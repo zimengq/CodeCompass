@@ -124,7 +124,7 @@ if __name__ == '__main__':
                             names.append(Node_extract(code_path_list[i], sel)[1])
                             node_list1 = Node_extract(code_path_list[i], sel)[0]
                             name = code_path_list[i]
-                            node_list.insert(0, name)
+                            node_list1.insert(0, name)
                             json_list.append(node_list1)
                             node_len += len(node_list1)
                         print ('The total amount of the nodes is {}'.format(node_len))

@@ -1,5 +1,5 @@
 digraph "Project Module Graph" {
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// VLOG_DEFINE_THIS_MODULE | FunctionDecl
 		{
@@ -2116,7 +2116,7 @@ digraph "Project Module Graph" {
 			000051120000 [label="ovsrec_open_vswitch_set_iface_types | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// VLOG_DEFINE_THIS_MODULE | FunctionDecl
 		{
@@ -2175,7 +2175,7 @@ digraph "Project Module Graph" {
 			000001890001 [label="pthread_once | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// VLOG_DEFINE_THIS_MODULE | FunctionDecl
 		{
@@ -2372,7 +2372,7 @@ digraph "Project Module Graph" {
 			000003450002 [label="latch_wait | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// VLOG_DEFINE_THIS_MODULE | FunctionDecl
 		{
@@ -2611,7 +2611,7 @@ digraph "Project Module Graph" {
 			000003220003 [label="unixctl_command_reply | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// test_multipath_main | FunctionDecl
 		{
@@ -2662,7 +2662,7 @@ digraph "Project Module Graph" {
 			000002870004 [label="OVSTEST_REGISTER | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// show_version | FunctionDecl
 		{
@@ -2717,7 +2717,7 @@ digraph "Project Module Graph" {
 			000001370005 [label="ovs_set_program_name | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// element definition | RecordDecl
 		{
@@ -2790,7 +2790,7 @@ digraph "Project Module Graph" {
 			000001530006 [label="random_range | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// cls_field definition | RecordDecl
 		{
@@ -3489,7 +3489,7 @@ digraph "Project Module Graph" {
 			000023070007 [label="OVSTEST_REGISTER | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// parse_options | FunctionDecl
 		{
@@ -3776,7 +3776,7 @@ digraph "Project Module Graph" {
 			000006950008 [label="OVSTEST_REGISTER | FunctionDecl"]
 		}
 	}
-	// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+	// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 	{
 		// compare_token | FunctionDecl
 		{

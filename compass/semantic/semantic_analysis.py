@@ -19,6 +19,8 @@ class SemanticAnalysis(object):
         self.ast_file = ast_file
         self.graph_dir = 'graph'
         self.parsed_ast_file = 'data/parsed_ast.json'
+        self.project_nodes = []
+        self.project_edges = []
 
     def convert_ast(self):
         ast_data = load_json(self.ast_file)
@@ -37,10 +39,16 @@ class SemanticAnalysis(object):
         index = 0
         for file in ast:
             module_graph = Digraph(comment=file['__filename'], format='pdf')
+            nodes = {}
+            edges = []
             for module in file['__content']['_subnode']:
-                module_graph = visualization(module, module['_subnode'], module_graph)
+                module_graph = visualization(module, module['_subnode'], module_graph,
+                                                                         nodes, edges)
+            self.project_nodes.append({'_content': nodes, '__filename': file['__filename']})
+            self.project_edges.append(edges)
             graph_file = self.graph_dir + '/module_graph' + '_' + str(index)
             index += 1
             save_graph(module_graph, graph_file)
             project_graph.subgraph(module_graph)
         save_graph(project_graph, self.graph_dir + '/project_graph')
+        return self.project_nodes, self.project_edges

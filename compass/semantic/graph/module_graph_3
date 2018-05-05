@@ -1,4 +1,4 @@
-// {'_nodetype': 'TranslationUnitDecl ', 'node_name': 'null', 'coord': 'null'}
+// {'coord': 'null', '_nodetype': 'TranslationUnitDecl ', 'node_name': 'null'}
 digraph {
 	// VLOG_DEFINE_THIS_MODULE | FunctionDecl
 	{

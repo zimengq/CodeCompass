@@ -43,8 +43,7 @@ def recursion(_subnodes):
                 if _subnode['_nodetype'] not in reserve_type_list:
                     temp.remove(_subnode)
                     remove_num += 1
-                if _subnode['node_name'] != 'null':
-                    _subnode['split_name'] = _subnode['node_name'].split('_')
+                _subnode['split_name'] = _subnode['node_name'].split('_')
                 if '_subnode' in _subnode:
                     if len(_subnode['_subnode']) != 0:
                         recursion(_subnode['_subnode'])

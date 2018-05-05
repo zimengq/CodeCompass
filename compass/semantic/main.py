@@ -43,4 +43,6 @@ if __name__ == '__main__':
 
     test = SemanticAnalysis(ast_file='../hook/jsons/AST.json')
     ast = test.convert_ast()[0:10]
-    test.visualize_graph(ast)
+    nodes, edges = test.visualize_graph(ast)
+    save_json(nodes, 'data/nodes.json')
+    save_json(edges, 'data/edges.json')

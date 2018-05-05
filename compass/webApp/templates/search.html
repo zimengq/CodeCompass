@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Compass</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link href="/static/rainbow/themes/github.css" rel="stylesheet" type="text/css">
+    <script src="/static/jquery/2.0.0/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <script src="/static/utils/inputvalidator.js"></script>   
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Search Engine</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <form class="navbar-form navbar-left" role="search" method="get" action="/search" onsubmit="return searchEngine_inputvalidator();">
+            <div class="form-group">
+              <input type="text" name = "query" id = "query" class="form-control" placeholder="type lang module keywords">
+            </div>
+            <button type="submit" class="btn btn-default">Go</button>
+          </form>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Back to Compass</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class='container'>
+      <div id="inputWarning"></div>
+      <div class="alert alert-success" role="alert">Search <b>{{keywords}}</b> from <b>{{queryType}}</b>. Return <b>{{count}}</b> items:</div>
+      
+        {% for result in results %}
+      <div class="panel panel-default">
+        <div class="panel-body">  
+          <h5><b>{{result['funcName']}}</b> in <i>{{result['filePath']}}</i></h5><br/>
+          <span class="badge">{{result['attrType']}}</span> <span class="badge">{{result['fileType']}}</span><br/>
+
+       	  {% if not result['fileType'] == 'Jar' %}
+	  <br/>
+	  <pre><code data-language="{{result['fileType']}}">{{result['code']}}</code></pre>
+	  {% endif %}
+
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+    <script src="/static/rainbow/js/rainbow.min.js"></script>
+    <script src="/static/rainbow/js/language/generic.js"></script>
+    <script src="/static/rainbow/js/language/python.js"></script>
+    <script src="/static/rainbow/js/language/java.js"></script>
+  </body>
+</html>
+

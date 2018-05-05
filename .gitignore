@@ -99,3 +99,13 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# graph
+*.pdf
+*.png
+*.jpg
+
+# others
+*.json
+*.iml
+*.xml

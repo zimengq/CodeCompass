@@ -1,0 +1,11 @@
+// /home/jinzhenghui/websocketpp/examples/iostream_server/iostream_server.cpp
+digraph {
+	// on_message | FunctionDecl
+	{
+		000000140007 [label="on_message | FunctionDecl"]
+	}
+	// main | FunctionDecl
+	{
+		000000290007 [label="main | FunctionDecl"]
+	}
+}

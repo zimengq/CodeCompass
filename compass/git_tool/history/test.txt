@@ -1,0 +1,6 @@
+from commit_history import mapping
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+if __name__ == '__main__':
+    program = os.path.basename(sys.argv[0])

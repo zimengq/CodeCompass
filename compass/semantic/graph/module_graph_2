@@ -1,0 +1,11 @@
+// /home/jinzhenghui/websocketpp/examples/print_server/print_server.cpp
+digraph {
+	// on_message | FunctionDecl
+	{
+		000000120002 [label="on_message | FunctionDecl"]
+	}
+	// main | FunctionDecl
+	{
+		000000160002 [label="main | FunctionDecl"]
+	}
+}

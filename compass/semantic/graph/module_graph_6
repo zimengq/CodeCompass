@@ -1,0 +1,13 @@
+// /home/jinzhenghui/websocketpp/examples/telemetry_server/telemetry_server.cpp
+digraph {
+	// telemetry_server definition | CXXRecordDecl
+	{
+		000000120006 [label="telemetry_server definition | CXXRecordDecl"]
+		000000330006 [label="telemetry_server | CXXRecordDecl"]
+		000000120006 -> 000000330006
+	}
+	// main | FunctionDecl
+	{
+		000001150006 [label="main | FunctionDecl"]
+	}
+}

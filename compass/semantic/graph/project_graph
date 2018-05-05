@@ -1,0 +1,132 @@
+digraph "Project Module Graph" {
+	// /home/jinzhenghui/websocketpp/websocketpp-config.cmake.in
+	{
+	}
+	// /home/jinzhenghui/websocketpp/websocketpp-configVersion.cmake.in
+	{
+	}
+	// /home/jinzhenghui/websocketpp/examples/print_server/print_server.cpp
+	{
+		// on_message | FunctionDecl
+		{
+			000000120002 [label="on_message | FunctionDecl"]
+		}
+		// main | FunctionDecl
+		{
+			000000160002 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/sip_client/sip_client.cpp
+	{
+		// on_open | FunctionDecl
+		{
+			000000160003 [label="on_open | FunctionDecl"]
+		}
+		// on_message | FunctionDecl
+		{
+			000000250003 [label="on_message | FunctionDecl"]
+		}
+		// main | FunctionDecl
+		{
+			000000350003 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/echo_server/echo_server.cpp
+	{
+		// on_message | FunctionDecl
+		{
+			000000140004 [label="on_message | FunctionDecl"]
+		}
+		// main | FunctionDecl
+		{
+			000000300004 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/testee_client/testee_client.cpp
+	{
+		// deflate_config definition | CXXRecordDecl
+		{
+			000000120005 [label="deflate_config definition | CXXRecordDecl"]
+			000000660005 [label="permessage_deflate_config definition | CXXRecordDecl"]
+			000000120005 -> 000000660005
+			// permessage_deflate_config definition | CXXRecordDecl
+			{
+				000000660005 [label="permessage_deflate_config definition | CXXRecordDecl"]
+				000000700005 [label="permessage_deflate_config | CXXRecordDecl"]
+				000000660005 -> 000000700005
+			}
+			000000370005 [label="transport_config definition | CXXRecordDecl"]
+			000000120005 -> 000000370005
+			// transport_config definition | CXXRecordDecl
+			{
+				000000370005 [label="transport_config definition | CXXRecordDecl"]
+				000000380005 [label="transport_config | CXXRecordDecl"]
+				000000370005 -> 000000380005
+			}
+			000000130005 [label="deflate_config | CXXRecordDecl"]
+			000000120005 -> 000000130005
+		}
+		// on_message | FunctionDecl
+		{
+			000000750005 [label="on_message | FunctionDecl"]
+		}
+		// main | FunctionDecl
+		{
+			000000870005 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/telemetry_server/telemetry_server.cpp
+	{
+		// telemetry_server definition | CXXRecordDecl
+		{
+			000000120006 [label="telemetry_server definition | CXXRecordDecl"]
+			000000330006 [label="telemetry_server | CXXRecordDecl"]
+			000000120006 -> 000000330006
+		}
+		// main | FunctionDecl
+		{
+			000001150006 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/iostream_server/iostream_server.cpp
+	{
+		// on_message | FunctionDecl
+		{
+			000000140007 [label="on_message | FunctionDecl"]
+		}
+		// main | FunctionDecl
+		{
+			000000290007 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/subprotocol_server/subprotocol_server.cpp
+	{
+		// validate | FunctionDecl
+		{
+			000000120008 [label="validate | FunctionDecl"]
+		}
+		// main | FunctionDecl
+		{
+			000000310008 [label="main | FunctionDecl"]
+		}
+	}
+	// /home/jinzhenghui/websocketpp/examples/scratch_client/scratch_client.cpp
+	{
+		// connection_metadata definition | CXXRecordDecl
+		{
+			000000120009 [label="connection_metadata definition | CXXRecordDecl"]
+			000000130009 [label="connection_metadata | CXXRecordDecl"]
+			000000120009 -> 000000130009
+		}
+		// websocket_endpoint definition | CXXRecordDecl
+		{
+			000000640009 [label="websocket_endpoint definition | CXXRecordDecl"]
+			000000650009 [label="websocket_endpoint | CXXRecordDecl"]
+			000000640009 -> 000000650009
+		}
+		// main | FunctionDecl
+		{
+			000001520009 [label="main | FunctionDecl"]
+		}
+	}
+}

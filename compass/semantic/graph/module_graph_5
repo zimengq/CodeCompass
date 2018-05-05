@@ -1,0 +1,33 @@
+// /home/jinzhenghui/websocketpp/examples/testee_client/testee_client.cpp
+digraph {
+	// deflate_config definition | CXXRecordDecl
+	{
+		000000120005 [label="deflate_config definition | CXXRecordDecl"]
+		000000660005 [label="permessage_deflate_config definition | CXXRecordDecl"]
+		000000120005 -> 000000660005
+		// permessage_deflate_config definition | CXXRecordDecl
+		{
+			000000660005 [label="permessage_deflate_config definition | CXXRecordDecl"]
+			000000700005 [label="permessage_deflate_config | CXXRecordDecl"]
+			000000660005 -> 000000700005
+		}
+		000000370005 [label="transport_config definition | CXXRecordDecl"]
+		000000120005 -> 000000370005
+		// transport_config definition | CXXRecordDecl
+		{
+			000000370005 [label="transport_config definition | CXXRecordDecl"]
+			000000380005 [label="transport_config | CXXRecordDecl"]
+			000000370005 -> 000000380005
+		}
+		000000130005 [label="deflate_config | CXXRecordDecl"]
+		000000120005 -> 000000130005
+	}
+	// on_message | FunctionDecl
+	{
+		000000750005 [label="on_message | FunctionDecl"]
+	}
+	// main | FunctionDecl
+	{
+		000000870005 [label="main | FunctionDecl"]
+	}
+}

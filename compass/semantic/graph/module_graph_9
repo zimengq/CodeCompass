@@ -1,0 +1,19 @@
+// /home/jinzhenghui/websocketpp/examples/scratch_client/scratch_client.cpp
+digraph {
+	// connection_metadata definition | CXXRecordDecl
+	{
+		000000120009 [label="connection_metadata definition | CXXRecordDecl"]
+		000000130009 [label="connection_metadata | CXXRecordDecl"]
+		000000120009 -> 000000130009
+	}
+	// websocket_endpoint definition | CXXRecordDecl
+	{
+		000000640009 [label="websocket_endpoint definition | CXXRecordDecl"]
+		000000650009 [label="websocket_endpoint | CXXRecordDecl"]
+		000000640009 -> 000000650009
+	}
+	// main | FunctionDecl
+	{
+		000001520009 [label="main | FunctionDecl"]
+	}
+}

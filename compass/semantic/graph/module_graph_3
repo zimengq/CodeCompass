@@ -1,0 +1,15 @@
+// /home/jinzhenghui/websocketpp/examples/sip_client/sip_client.cpp
+digraph {
+	// on_open | FunctionDecl
+	{
+		000000160003 [label="on_open | FunctionDecl"]
+	}
+	// on_message | FunctionDecl
+	{
+		000000250003 [label="on_message | FunctionDecl"]
+	}
+	// main | FunctionDecl
+	{
+		000000350003 [label="main | FunctionDecl"]
+	}
+}

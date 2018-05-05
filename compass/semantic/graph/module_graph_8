@@ -1,0 +1,11 @@
+// /home/jinzhenghui/websocketpp/examples/subprotocol_server/subprotocol_server.cpp
+digraph {
+	// validate | FunctionDecl
+	{
+		000000120008 [label="validate | FunctionDecl"]
+	}
+	// main | FunctionDecl
+	{
+		000000310008 [label="main | FunctionDecl"]
+	}
+}

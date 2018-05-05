@@ -16,42 +16,21 @@ RE_FILE_CPP = re.compile(r'.cpp:(.*?):')
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-def Sequence_gene(node_list, num_list):
-    """From the root to the leaves, we traverse the tree to get all the sequences"""
-    seque_list = []
-    index_list = []
-    for y in range(max(num_list), 1, -2):
-        for x in range(len(num_list)-1, -1, -1):
-            if num_list[x] == y:
-                sequence = []
-                index = []
-                sequence.append(node_list[x + 1]['_nodetype'])
-                index.append(x+1)
-                for z in range(y-2, 0, -2):
-                    for i in range(x-1, -1, -1):
-                        if num_list[i] == z:
-                            sequence.append(node_list[i + 1]['_nodetype'])
-                            index.append(i+1)
-                            break
-                index.append(0)
-                sequence.append(node_list[0]['_nodetype'])
-                seque_list.append(sequence)
-                index_list.append(index)
-    return [seque_list, index_list]
-
-def to_dict(node_list, id):
+def to_init_dict(node_list, id):
     """Transform the node list into nested dictionary"""
     print (id)
     node_list_cp = node_list[:]
     cp_list = []
+    # func_num_list = []
     AST_dict = dict()
     AST_dict['_nodetype'] = node_list_cp[0]['_nodetype']
     AST_dict['coord'] = 'null'
     AST_dict['id'] = "%08d"%(0) + "%04d"%(id)
-    first_sublist = []
     for x in range(1, len(node_list_cp)):
         num = node_list_cp[x]['_nodetype'].find('-')
         cp_list.append(num)
+        # if node_list_cp[x]['node_name'] != "null":
+        #     func_num_list.append(num)
         cut = re.findall(RE_AZ, node_list_cp[x]['_nodetype'])
         if len(cut) > 0:
             node_list_cp[x]['_nodetype'] = cut[0]
@@ -61,7 +40,33 @@ def to_dict(node_list, id):
     num_list = cp_list[:]
 
     node_list_cp = linenum_extract(node_list_cp, num_list, id)
+    return [AST_dict, node_list_cp, cp_list]
 
+def to_dict(node_list, id):
+    """Transform the node list into nested dictionary"""
+    print (id)
+    node_list_cp = node_list[:]
+    cp_list = []
+    # func_num_list = []
+    AST_dict = dict()
+    AST_dict['_nodetype'] = node_list_cp[0]['_nodetype']
+    AST_dict['coord'] = 'null'
+    AST_dict['id'] = "%08d"%(0) + "%04d"%(id)
+    for x in range(1, len(node_list_cp)):
+        num = node_list_cp[x]['_nodetype'].find('-')
+        cp_list.append(num)
+        # if node_list_cp[x]['node_name'] != "null":
+        #     func_num_list.append(num)
+        cut = re.findall(RE_AZ, node_list_cp[x]['_nodetype'])
+        if len(cut) > 0:
+            node_list_cp[x]['_nodetype'] = cut[0]
+        else:
+            node_list_cp[x]['_nodetype'] = 'NULL'
+        node_list_cp[x]['id'] = "%08d"%(x) + "%04d"%(id)
+    num_list = cp_list[:]
+
+    node_list_cp = linenum_extract(node_list_cp, num_list, id)
+    first_sublist = []
     for y in range(max(num_list) - 2, 0, -2):
         for x in range(len(num_list) - 1, -1, -1):
             if num_list[x] == y:
@@ -128,13 +133,44 @@ def to_json(node_list, json_name1, json_name2, Tri=False):
         f2.close()
     else:
         node_list_new = node_list[:]
+        name = node_list_new[0]
+        del node_list_new[0]
         AST_dict = to_dict(node_list_new, 0)
+        new_dict = dict()
+        new_dict['__filename'] = name
+        new_dict['__content'] = AST_dict[0]
+        trace_newdict = dict()
+        trace_newdict['__filename'] = name
+        trace_newdict['__content'] = AST_dict[3]
         with open(json_name1, 'w+') as f1:
-            json.dump(AST_dict[0], f1, ensure_ascii=False, indent=4)
+            json.dump(new_dict, f1, ensure_ascii=False, indent=4)
         f1.close()
         with open(json_name2, 'w+') as f2:
-            json.dump(AST_dict[3], f2, ensure_ascii=False, indent=4)
+            json.dump(trace_newdict, f2, ensure_ascii=False, indent=4)
         f2.close()
+
+def Sequence_gene(node_list, num_list):
+    """From the root to the leaves, we traverse the tree to get all the sequences"""
+    seque_list = []
+    index_list = []
+    for y in range(max(num_list), 1, -2):
+        for x in range(len(num_list)-1, -1, -1):
+            if num_list[x] == y:
+                sequence = []
+                index = []
+                sequence.append(node_list[x + 1]['_nodetype'])
+                index.append(x+1)
+                for z in range(y-2, 0, -2):
+                    for i in range(x-1, -1, -1):
+                        if num_list[i] == z:
+                            sequence.append(node_list[i + 1]['_nodetype'])
+                            index.append(i+1)
+                            break
+                index.append(0)
+                sequence.append(node_list[0]['_nodetype'])
+                seque_list.append(sequence)
+                index_list.append(index)
+    return [seque_list, index_list]
 
 def linenum_extract(node_list, num_list, id):
     """Extract Line Number"""
@@ -222,7 +258,9 @@ def linenum_extract(node_list, num_list, id):
                     continue
                 break
             if 'col' in node_list_new[i]['coord']:
-                node_list_new[i]['coord'] = 'null'
+                # node_list_new[i]['coord'] = 'null'
+                if i > 1:
+                    node_list_new[i]['coord'] = node_list_new[i-1]['coord']
         else:
             node_list_new[i]['coord'] = 'null'
         # print (node_list_new[i])
@@ -245,7 +283,7 @@ def find_module(line_number):
             raise SystemExit("The file number is too large")
         file_name = file_path_list[Input_file]
         node_list = Node_extract(file_name,True)[0]
-        node_list_new = to_dict(node_list, Input_file)[2]
+        node_list_new = to_init_dict(node_list, Input_file)[1]
         print ("###############The Result################")
         print (str(file_name) + ":" + str(Input_line))
         for i in range(1, len(node_list_new)):
@@ -274,8 +312,8 @@ def find_module(line_number):
         print ("#########################################")
         return output_list
 
-#if __name__ == "__main__":
-#    code_path = dir_path + '/example/test.cpp'
-#    node_list = Node_extract(code_path, True)
-#    node_list_new = to_dict(node_list[0],0)[2]
-#    print (node_list_new)
+if __name__ == "__main__":
+   code_path = '/home/jinzhenghui/ovs/vswitchd/bridge.c'
+   node_list = Node_extract(code_path, True)
+   node_list_new = to_dict(node_list[0],0)[0]
+   print (node_list_new)

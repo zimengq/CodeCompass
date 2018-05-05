@@ -11,8 +11,8 @@ RE_LINE = re.compile(r'<(.*?)>')
 RE_SLOC_LINE = re.compile(r'line:(.*?) ')
 RE_SLOC_COL = re.compile(r'col:(.*?) ')
 
-RE_CLASS = re.compile(r'class (.*) ')
-RE_STRUCT = re.compile(r'struct (.*) ')
+RE_CLASS = re.compile(r'class (.*)')
+RE_STRUCT = re.compile(r'struct (.*)')
 RE_FUNC = re.compile(r' (.+?) ')
 RE_SUB = re.compile(r'@@(.*?)@@')
 

@@ -23,7 +23,7 @@ def visualization(father_node, son_nodes, graph, nodes, edges):
         for node in son_nodes:
             g.node(node['id'],
                    node['node_name'] + ' | ' + node['_nodetype'])
-            nodes[father_node['id']] = {"node_name": node['node_name'],
+            nodes[node['id']] = {"node_name": node['node_name'],
                                         "_nodetype": node['_nodetype'],
                                         "split_name": node['split_name']}
             g.edge(father_node['id'],

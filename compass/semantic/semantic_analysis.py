@@ -65,12 +65,12 @@ class SemanticAnalysis(object):
                                 "filePath":filePath, 
                                 "splitName":splitName, 
                                 "nodeType":nodeType, 
-                                "id":int(sectionID.encode("utf-8"))})
+                                "id":(sectionID.encode("utf-8"))})
 
         result = []
         for items in tmpEdge:
             for item in items:
-                self.project_edgeList.append((int(item[0].encode("utf-8")), int(item[1].encode("utf-8"))))
+                self.project_edgeList.append(((item[0].encode("utf-8")), (item[1].encode("utf-8"))))
 
     def check(self):
         print len(self.project_nodeList)

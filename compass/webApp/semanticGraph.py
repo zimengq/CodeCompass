@@ -31,7 +31,6 @@ class semanticGraph(object):
 				if edge[0] not in nIDs:
 					ns.append([self.__findNodeDeclarationByID(edge[0]), edge[0]])
 				if edge[1] not in nIDs:
-					print edge[1]
 					ns.append([self.__findNodeDeclarationByID(edge[1]), edge[1]])
 
 		#print len(self.nodes), len(self.edges)

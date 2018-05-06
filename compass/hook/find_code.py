@@ -25,7 +25,7 @@ def find_code(keyword):
 		file_num = int(line_info[j][0:4])
 		begin_line = int(line_info[j][4:10])
 		end_line = int(line_info[j][10:16])
-		file_name = file_path[file_num].replace("/home/jinzhenghui",home_path)
+		file_name = file_path[file_num].replace("/home/jinzhenghui", home_path)
 		output_str += file_path[file_num] + ":" + str(begin_line) + "-" + str(end_line) + "\n"
 		with open(file_path[file_num]) as file_content:
 			check_point = 0

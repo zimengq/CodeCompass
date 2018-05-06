@@ -1,14 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Compass</title>
+    <meta charset="UTF-8">
+    <title>Compass</title>
 
-  <link rel='stylesheet' href='/static/bootstrap/css/bootstrap.css'>
-  <script src="/static/jquery/2.0.0/jquery.min.js"></script>
-  <script src="/static/bootstrap/js/bootstrap.js"></script>
-  <script src="/static/utils/stringFormat.js"></script>
+    <link rel='stylesheet' href='/static/bootstrap/css/bootstrap.css'>
+    <script src="/static/jquery/2.0.0/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <script src="/static/utils/stringFormat.js"></script>
 
+    <!-- START SIGMA IMPORTS -->
+    <script src="/static/sigma.js-1.2.1/src/sigma.core.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/conrad.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/utils/sigma.utils.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/utils/sigma.polyfills.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/sigma.settings.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/classes/sigma.classes.dispatcher.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/classes/sigma.classes.configurable.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/classes/sigma.classes.graph.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/classes/sigma.classes.camera.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/classes/sigma.classes.quad.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/classes/sigma.classes.edgequad.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/captors/sigma.captors.mouse.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/captors/sigma.captors.touch.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/sigma.renderers.canvas.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/sigma.renderers.webgl.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/sigma.renderers.svg.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/sigma.renderers.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/svg/sigma.svg.utils.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/svg/sigma.svg.edges.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/svg/sigma.svg.labels.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/middlewares/sigma.middlewares.rescale.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/middlewares/sigma.middlewares.copy.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/misc/sigma.misc.animation.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/misc/sigma.misc.bindEvents.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/misc/sigma.misc.bindDOMEvents.js"></script>
+    <script src="/static/sigma.js-1.2.1/src/misc/sigma.misc.drawHovers.js"></script>
+    <script src="/static/sigma.js-1.2.1/plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
+    <script src="/static/sigma.js-1.2.1/plugins/sigma.layout.forceAtlas2/worker.js"></script>
+    <script src="/static/sigma.js-1.2.1/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
+    <!-- END SIGMA IMPORTS -->
+
+    <script src="/static/rainbow/js/rainbow.min.js"></script>
+    <script src="/static/rainbow/js/language/generic.js"></script>
+    <script src="/static/rainbow/js/language/python.js"></script>
+    <script src="/static/rainbow/js/language/java.js"></script>
+    <script src="/static/rainbow/js/language/c.js"></script>
 </head>
     <body>
         <div id="initDom">
@@ -26,7 +83,7 @@
             <div id="searchBox" class='container'>
                 <br><br>
                 <div class='row'>
-                    <div class='col-lg-8 col-lg-offset-2'>
+                    <div class='col-lg-12'>
                         <form onsubmit="return false;">
                             <div class="input-group">
                                 <span class="input-group-btn">
@@ -40,14 +97,33 @@
                 </div>
             </div>
             <br><br>
-            <div id="result"></div>      
+            <div id="result" class='container'>
+                <div class="row">
+                    <div class='col-lg-6'>
+                        <div id='graph'></div>
+                    </div>
+                    <div class='col-lg-6'>
+                        <div id='code' style='height:400px; overflow:auto;'></div>
+                    </div>
+                </div>
+            </div>      
         </div>
     </body>
     <script type="text/javascript">
+        function createCodeDom(text) {
+            document.getElementById("code").innerHTML = `
+                <pre>
+                    <code data-language="c">{0}</code>
+                </pre>
+            `.format(text);
+        }
         function createNotificationDom(text, type) {
             document.getElementById("notification").innerHTML = `
                 <div class="alert alert-{1}" role="alert">{0}</div>
             `.format(text, type);
+        }
+        function cleanNotificationDom() {
+            document.getElementById("notification").innerHTML = '';
         }
         function createResultDom(graph) {
             var nodes = graph[0];
@@ -63,9 +139,8 @@
                 if (from != null && to != null) {
                     relations.push([from, to]);
                 }
-                console.warn(from, to)
             }
-            console.warn(relations);
+            createViz(relations);
         }
         function removeBrand() {
             document.getElementById("brand").innerHTML = "";
@@ -82,6 +157,7 @@
                 dataType: "json",
                 success: function (message) {
                     removeBrand();
+                    cleanNotificationDom();
                     createResultDom(message['graph']);
                 },
                 error: function (message) {
@@ -89,5 +165,126 @@
                 }
             });
         });
+    </script>
+    <script type="text/javascript">
+        function ifIsInNodeList(nodeList, nodeID) {
+            for (var i=0; i<nodeList.length; i++) {
+                if (nodeList[i]['id']==nodeID) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function ifIsInEdgeList(edgeList, edgeID) {
+            for (var i=0; i<edgeList.length; i++) {
+                if (edgeList[i]['id']==edgeID) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function createViz(relations) {
+            document.getElementById('graph').innerHTML = `
+            <div id="graph-container" style='width:600px; height:400px;'></div>`;
+            var i,
+            s,
+            g = {
+              nodes: [],
+              edges: []
+            };
+
+            // Generate a random graph:
+            for (i = 0; i < relations.length; i++) {
+                if (!ifIsInNodeList(g.nodes, relations[i][0])) {
+                    g.nodes.push({
+                        id: relations[i][0],
+                        label: relations[i][0],
+                        x: Math.random(),
+                        y: Math.random(),
+                        size: 5,
+                        color: '#666'
+                    });
+                }
+                if (!ifIsInNodeList(g.nodes, relations[i][1])) {
+                    g.nodes.push({
+                        id: relations[i][1],
+                        label: relations[i][1],
+                        x: Math.random(),
+                        y: Math.random(),
+                        size: 5,
+                        color: '#666'
+                    });
+                }
+            }
+
+            for (i = 0; i < relations.length; i++) {
+                if (!ifIsInEdgeList(g.edges, relations[i][0]+'->'+relations[i][1])) {
+                    g.edges.push({
+                        id: relations[i][0]+'->'+relations[i][1],
+                        source: relations[i][0],
+                        target: relations[i][1],
+                        size: 0.5,
+                        color: '#ccc'
+                    });
+                }
+            }
+            // sigma.renderers.def = sigma.renderers.canvas
+            // Instantiate sigma:
+            var s = new sigma({
+                graph: g,
+                container: 'graph-container',
+                settings: {
+                    labelSize: "proportional",
+                    labelThreshold: 10,
+                    labelSizeRatio: 3,
+                    autoRescale: false,
+                    zoomingRatio: 3,
+                    zoomMax: 20,
+                    zoomMin: 0.0001,
+                }
+            });
+
+            // Initialize the dragNodes plugin:
+            var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+
+            dragListener.bind('startdrag', function(event) {
+                //console.log(event);
+            });
+            dragListener.bind('drag', function(event) {
+                //console.log(event);
+            });
+            dragListener.bind('drop', function(event) {
+                //console.log(event);
+            });
+            dragListener.bind('dragend', function(event) {
+                //console.log(event);
+            });
+
+            s.bind('click', function(event) {
+                s.stopForceAtlas2();
+            });
+
+            s.bind('clickNode', function(event) {
+                var declaration = event['data']['node']['label'];
+                $.ajax({
+                    type: "POST",
+                    url: "/getCodeSection",
+                    data: JSON.stringify({'declaration': declaration}),
+                    dataType: "json",
+                    success: function (message) {
+                        createCodeDom(message['codeSection']);
+                    },
+                    error: function (message) {
+                        
+                    }
+                });
+            });
+
+            // Start the ForceAtlas2 algorithm:
+            s.startForceAtlas2({barnesHutOptimize: true, linLogMode: true});
+        }
+
     </script>
 </html>

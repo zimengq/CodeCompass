@@ -1,7 +1,7 @@
 #!flask/bin/python
 from flask import Flask, render_template, jsonify, request
 import json
-import semanticGraph
+import semanticGraph, codeSection
 
 nodeFilePath = "/home/kakaiu/testDataForCompass/node.json"
 edgeFilePath = "/home/kakaiu/testDataForCompass/edge.json"
@@ -18,6 +18,15 @@ def search():
 	keyword = json.loads(request.get_data())['query'].encode('utf-8')
 	result = graph.query(keyword)
 	return jsonify({'graph':result}), 201
+
+@app.route("/getCodeSection", methods=['POST'])
+def getCodeSection():
+	declaration = json.loads(request.get_data())['declaration'].encode('utf-8')
+	result = codeSection.find_code(declaration, 
+					"/home/kakaiu/testDataForCompass/line_dict_new.json", 
+					"/home/kakaiu/testDataForCompass/file_path.json", 
+					"/home/kakaiu/testDataForCompass")
+	return jsonify({'codeSection':result}), 201
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=80)

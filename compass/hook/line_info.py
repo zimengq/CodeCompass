@@ -39,7 +39,7 @@ class FindModule:
 if __name__ == '__main__':
 	findmod = FindModule()
 	out_dict = findmod.generate_dict()
-	file_path = "./line_dict_new.json"
+	file_path = "./jsons/line_dict_new.json"
 	with open(file_path, 'w+') as f1:
 		json.dump(out_dict, f1, ensure_ascii=False, indent=4)
 	f1.close()

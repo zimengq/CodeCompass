@@ -42,6 +42,18 @@ def AST_preprocess(code_path):
                     line = '\n'
                 f_new.write(line)
         f_new.close()
+    elif '.h' in code_path:
+        path_new = './example/test_new.h'
+        with open(code_path , 'r') as f:
+            lines = f.readlines()
+        f.close()
+
+        with open(path_new , 'w') as f_new:
+            for line in lines:
+                if '#include' in line:
+                    line = '\n'
+                f_new.write(line)
+        f_new.close()
     return path_new
 
 def AST_generate(code_path, preprocess):

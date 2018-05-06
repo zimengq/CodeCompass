@@ -50,5 +50,6 @@ class SemanticAnalysis(object):
             index += 1
             save_graph(module_graph, graph_file)
             project_graph.subgraph(module_graph)
+
         save_graph(project_graph, self.graph_dir + '/project_graph')
         return self.project_nodes, self.project_edges

@@ -11,7 +11,7 @@ def index():
 @app.route("/search", methods=['POST'])
 def search():
 	query = json.loads(request.get_data())
-	print query
+	print(query)
 	return jsonify({'test':'hello'}), 201
 
 if __name__ == '__main__':

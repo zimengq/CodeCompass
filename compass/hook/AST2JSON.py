@@ -90,7 +90,7 @@ def to_dict(node_list, id):
     for i in range(len(seque_list)):
         for k in range(len(index_list[i])):
             num = index_list[i][k]
-            if count_dict.has_key(str(num)):
+            if str(num) in count_dict.keys():
                 continue
             else:
                 count_dict[str(num)] = 'True'

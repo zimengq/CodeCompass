@@ -7,110 +7,85 @@
   <link rel='stylesheet' href='/static/bootstrap/css/bootstrap.css'>
   <script src="/static/jquery/2.0.0/jquery.min.js"></script>
   <script src="/static/bootstrap/js/bootstrap.js"></script>
+  <script src="/static/utils/stringFormat.js"></script>
 
-  <style>
-	html,body{color:#505050;line-height:1.75em;background:#ebebeb;}
-	.main-header{
-		text-align:center;
-		padding:42px 0;
-		background:#fff;
-	}
-	.main-header .branding{
-		font-size:3.5em;
-		color:#303030;
-	}
-
-	a{
-		color:#e67e22;
-		outline:none;
-		text-decoration:none;
-
-	}
-	.main-header .branding img{
-		max-width: 100%;
-	}
-	a:active,a:focus,a img{
-		outline:none;
-	}
-	/* head */
-	.main-navigation{
-		text-align:center;
-		background:#ffffff;
-		border-top:1px solid #ebebeb;
-		border-bottom:3px solid #e1e1e1;
-		margin-bottom:35px;
-	}
-	.main-navigation .menu{
-		padding:0;
-		margin:0;
-	}
-	.main-navigation .menu li.nav-current{
-		border-bottom:3px solid #349eff;
-		margin-bottom:-2px;
-	}
-	.main-navigation .menu li{
-		list-style:none;
-		display:inline-block;
-		position:relative;
-	}
-	.main-navigation .menu li a{
-		color:#505050;
-		line-height:4em;
-		display:block;
-		padding:0 21px;
-		text-decoration:none;
-	}
-  </style>
 </head>
-    <body class='home-template'>
-        <div id="main">
-    	<header class='main-header'>
-    		<div class='container'>
-    			<div class='row'>
-    				<div class='col-md-12'>
-    					<a class='branding' href='/' title='compass(指南针)'>
-    						<img src='/static/assets/img/iconfont-iconyonghuzhinan.png' style='width:80px; height:80px;'/>
-    						<h2 class='text-hide'>
-    							compass
-    						</h2>
-    					</a>
-    				</div>
-    			</div>
-    		</div>
-    	</header>
-    	<!--nav complete-->
-    	<div class='container'>
-            <div class='row'>
-                <div class='col-lg-8 col-lg-offset-2'>
-    		        <form onsubmit="return false;">
-    		            <div class="input-group">
-    		                <span class="input-group-btn">
-    		                   <button style="background-color:#0099ff" class="btn btn-default" id="submitBTN">Go!</button>
-    		                </span>
-    		                <input type="text" id = "queryText" class="form-control" placeholder="keywords">
-    		            </div>
-    		        </form>
-    		    </div>
+    <body>
+        <div id="initDom">
+            <br><br>
+            <div id="brand" class='container'>
+                <br><br>
+                <div class='row'>
+                    <div style="text-align: center;">
+                        <a class='branding' href='/' title='compass(指南针)'>
+                            <img src='/static/assets/img/iconfont-iconyonghuzhinan.png' style='width:80px; height:80px;' style="margin: 0 auto;">
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class='row'>
-                
+            <div id="searchBox" class='container'>
+                <br><br>
+                <div class='row'>
+                    <div class='col-lg-8 col-lg-offset-2'>
+                        <form onsubmit="return false;">
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                   <button style="background-color:#0099ff" class="btn btn-default" id="submitBTN">Go!</button>
+                                </span>
+                                <input type="text" id = "queryText" class="form-control" placeholder="keywords">
+                            </div>
+                        </form>
+                        <div id="notification"></div>
+                    </div>
+                </div>
             </div>
+            <br><br>
+            <div id="result"></div>      
         </div>
     </body>
     <script type="text/javascript">
+        function createNotificationDom(text, type) {
+            document.getElementById("notification").innerHTML = `
+                <div class="alert alert-{1}" role="alert">{0}</div>
+            `.format(text, type);
+        }
+        function createResultDom(graph) {
+            var nodes = graph[0];
+            var edges = graph[1];
+            var nodeDict = Object();
+            for (var i=0; i<nodes.length; i++) {
+                nodeDict[nodes[i][1]] = nodes[i][0]
+            }
+            var relations = [];
+            for (var i=0; i<edges.length; i++) {
+                var from = nodeDict[edges[i][0]];
+                var to = nodeDict[edges[i][1]];
+                if (from != null && to != null) {
+                    relations.push([from, to]);
+                }
+                console.warn(from, to)
+            }
+            console.warn(relations);
+        }
+        function removeBrand() {
+            document.getElementById("brand").innerHTML = "";
+        }
+    </script>
+    <script type="text/javascript">
         $("#submitBTN").click(function() {
             var queryText = document.getElementById("queryText").value;
-            console.warn(queryText);
+            createNotificationDom("waiting...", "info");
             $.ajax({
                 type: "POST",
                 url: "/search",
                 data: JSON.stringify({'query': queryText}),
                 dataType: "json",
                 success: function (message) {
-                    
+                    removeBrand();
+                    createResultDom(message['graph']);
                 },
                 error: function (message) {
-
+                    createNotificationDom("error!", "danger");
                 }
             });
         });

@@ -20,21 +20,23 @@ def find_code(keyword):
 	# dict_values = list(line_dict.values())
 	# line_info = dict_values[i]
 	line_info = line_dict[keyword]
-	output_str = ""
+	output_list = []
 	for j in range(len(line_info)):
+		file_dict = dict()
 		file_num = int(line_info[j][0:8])
 		begin_line = int(line_info[j][8:16])
 		end_line = int(line_info[j][16:24])
-		file_name = file_path[file_num].replace("/home/jinzhenghui", home_path)
-		output_str += file_path[file_num] + ":" + str(begin_line) + "-" + str(end_line) + "\n"
 		with open(file_path[file_num]) as file_content:
 			check_point = 0
+			line_info_dict = dict()
 			for line in file_content:
 				check_point += 1
 				if begin_line <= check_point and end_line >= check_point:
-					output_str += line
-		output_str += "\n"
-	return output_str
+					line_num = "%08d" % (check_point) + "%08d" % (file_num)
+					line_info_dict[line_num] = line
+		file_dict[file_path[file_num]] = [line_info_dict]
+		output_list.append(file_dict)
+	return output_list
 
 if __name__ == "__main__":
 	print (find_code("controller_ctx"))

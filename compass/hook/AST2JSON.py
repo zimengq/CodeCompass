@@ -26,7 +26,7 @@ def to_init_dict(node_list, id):
     AST_dict = dict()
     AST_dict['_nodetype'] = node_list_cp[0]['_nodetype']
     AST_dict['coord'] = 'null'
-    AST_dict['id'] = "%08d"%(0) + "%04d"%(id)
+    AST_dict['id'] = "%08d"%(0) + "%08d"%(id)
     for x in range(1, len(node_list_cp)):
         num = node_list_cp[x]['_nodetype'].find('-')
         cp_list.append(num)
@@ -37,7 +37,7 @@ def to_init_dict(node_list, id):
             node_list_cp[x]['_nodetype'] = cut[0]
         else:
             node_list_cp[x]['_nodetype'] = 'NULL'
-        node_list_cp[x]['id'] = "%08d"%(x) + "%04d"%(id)
+        node_list_cp[x]['id'] = "%08d"%(x) + "%08d"%(id)
     num_list = cp_list[:]
 
     node_list_cp = linenum_extract(node_list_cp, num_list, id)
@@ -52,7 +52,7 @@ def to_dict(node_list, id):
     AST_dict = dict()
     AST_dict['_nodetype'] = node_list_cp[0]['_nodetype']
     AST_dict['coord'] = 'null'
-    AST_dict['id'] = "%08d"%(0) + "%04d"%(id)
+    AST_dict['id'] = "%08d"%(0) + "%08d"%(id)
     for x in range(1, len(node_list_cp)):
         num = node_list_cp[x]['_nodetype'].find('-')
         cp_list.append(num)
@@ -63,7 +63,7 @@ def to_dict(node_list, id):
             node_list_cp[x]['_nodetype'] = cut[0]
         else:
             node_list_cp[x]['_nodetype'] = 'NULL'
-        node_list_cp[x]['id'] = "%08d"%(x) + "%04d"%(id)
+        node_list_cp[x]['id'] = "%08d"%(x) + "%08d"%(id)
     num_list = cp_list[:]
 
     node_list_cp = linenum_extract(node_list_cp, num_list, id)
@@ -96,12 +96,12 @@ def to_dict(node_list, id):
             else:
                 count_dict[str(num)] = 'True'
                 trace_dict = dict()
-                trace_dict['id'] = "%08d"%(num) + "%04d"%(id)
+                trace_dict['id'] = "%08d"%(num) + "%08d"%(id)
                 trace_dict['_nodetype'] = node_list_cp[num]['_nodetype']
                 trace_dict['coord'] = node_list_cp[num]['coord']
                 short_list = []
                 for p in range(k, len(index_list[i]), 1):
-                    short_list.append("%08d"%(index_list[i][p]) + "%04d"%(id))
+                    short_list.append("%08d"%(index_list[i][p]) + "%08d"%(id))
                 trace_dict['trace'] = short_list
                 trace_list.append(trace_dict)
             if len(count_dict) == len(node_list):
@@ -183,8 +183,8 @@ def linenum_extract(node_list, num_list, id):
                 line_info1 = re.findall(RE_FILE_C, coordinate)
                 line_info2 = re.findall(RE_LINENUM, coordinate)
                 if len(line_info1) > 0 and len(line_info2) > 0:
-                    line_begin = "%06d"%(int(line_info1[0])) + "%04d"%(id)
-                    line_end = "%06d"%(int(line_info2[0])) + "%04d"%(id)
+                    line_begin = "%08d"%(int(line_info1[0])) + "%08d"%(id)
+                    line_end = "%08d"%(int(line_info2[0])) + "%08d"%(id)
                     node_list_new[i]['coord'] = [line_begin,line_end]
                 else:
                     node_list_new[i]['coord'] = 'null'
@@ -192,8 +192,8 @@ def linenum_extract(node_list, num_list, id):
                 line_info1 = re.findall(RE_FILE_CPP, coordinate)
                 line_info2 = re.findall(RE_LINENUM, coordinate)
                 if len(line_info1) > 0 and len(line_info2) > 0:
-                    line_begin = "%06d" % (int(line_info1[0])) + "%04d" % (id)
-                    line_end = "%06d" % (int(line_info2[0])) + "%04d" % (id)
+                    line_begin = "%08d" % (int(line_info1[0])) + "%08d" % (id)
+                    line_end = "%08d" % (int(line_info2[0])) + "%08d" % (id)
                     node_list_new[i]['coord'] = [line_begin,line_end]
                 else:
                     node_list_new[i]['coord'] = 'null'
@@ -201,8 +201,8 @@ def linenum_extract(node_list, num_list, id):
             line_info1 = re.findall(RE_FILE_H, coordinate)
             line_info2 = re.findall(RE_LINENUM, coordinate)
             if len(line_info1) > 0 and len(line_info2) > 0:
-                line_begin = "%06d"%(int(line_info1[0])) + "%04d"%(id)
-                line_end = "%06d"%(int(line_info2[0])) + "%04d"%(id)
+                line_begin = "%08d"%(int(line_info1[0])) + "%08d"%(id)
+                line_end = "%08d"%(int(line_info2[0])) + "%08d"%(id)
                 node_list_new[i]['coord'] = [line_begin,line_end]
             else:
                 node_list_new[i]['coord'] = 'null'
@@ -211,8 +211,8 @@ def linenum_extract(node_list, num_list, id):
             if 'col' in coordinate:
                 if ', col' in coordinate:
                     if len(line_info) > 0:
-                        line_begin = "%06d" % (int(line_info[0])) + "%04d" % (id)
-                        line_end = "%06d" % (int(line_info[0])) + "%04d" % (id)
+                        line_begin = "%08d" % (int(line_info[0])) + "%08d" % (id)
+                        line_end = "%08d" % (int(line_info[0])) + "%08d" % (id)
                         node_list_new[i]['coord'] = [line_begin,line_end]
                     else:
                         node_list_new[i]['coord'] = 'null'
@@ -233,7 +233,7 @@ def linenum_extract(node_list, num_list, id):
                             else:
                                 continue
                             break
-                        line_end = "%06d" % (int(line_info[0])) + "%04d" % (id)
+                        line_end = "%08d" % (int(line_info[0])) + "%08d" % (id)
                         node_list_new[i]['coord'] = [line_begin,line_end]
                     else:
                         node_list_new[i]['coord'] = 'null'
@@ -241,12 +241,12 @@ def linenum_extract(node_list, num_list, id):
                     node_list_new[i]['coord'] = 'null'
             else:
                 if len(line_info) == 2:
-                    line_begin = "%06d" % (int(line_info[0])) + "%04d" % (id)
-                    line_end = "%06d" % (int(line_info[1])) + "%04d" % (id)
+                    line_begin = "%08d" % (int(line_info[0])) + "%08d" % (id)
+                    line_end = "%08d" % (int(line_info[1])) + "%08d" % (id)
                     node_list_new[i]['coord'] = [line_begin,line_end]
                 elif len(line_info) > 0:
-                    line_begin = "%06d" % (int(line_info[0])) + "%04d" % (id)
-                    line_end = "%06d" % (int(line_info[0])) + "%04d" % (id)
+                    line_begin = "%08d" % (int(line_info[0])) + "%08d" % (id)
+                    line_end = "%08d" % (int(line_info[0])) + "%08d" % (id)
                     node_list_new[i]['coord'] = [line_begin,line_end]
                 else:
                     node_list_new[i]['coord'] = 'null'
@@ -280,8 +280,8 @@ def linenum_extract(node_list, num_list, id):
 def find_module(line_number):
     if os.path.exists(dir_path + '/jsons/AST.json') and os.path.exists(dir_path + '/jsons/file_path.json'):
         Input_id = line_number
-        Input_line = int(Input_id[0:6])
-        Input_file = int(Input_id[6:10])
+        Input_line = int(Input_id[0:8])
+        Input_file = int(Input_id[8:16])
         max = 0
         lines = 0
         output_list = []
@@ -302,8 +302,8 @@ def find_module(line_number):
                 if line_range[0] != 'null' and line_range[1] != 'null' :
                     first_line = line_range[0]
                     last_line = line_range[1]
-                    line_number1 = int(first_line[0:6])
-                    line_number2 = int(last_line[0:6])
+                    line_number1 = int(first_line[0:8])
+                    line_number2 = int(last_line[0:8])
                     if line_number2 > max :
                         max = line_number2
                     if line_number1 != line_number2:

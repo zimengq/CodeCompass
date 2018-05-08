@@ -43,9 +43,9 @@ if __name__ == '__main__':
                     node_graph(code_path_a, sel, set[0])
                     node_graph(code_path_b, sel, set[1])
                 if not os.path.exists(args[1]) and os.path.exists(args[2]):
-                    raise SystemExit("Error: Could not find the first c/c++ file")
+                    raise SystemExit("Error: Could not find the first h/c/c++ file")
                 if not os.path.exists(args[2]) and os.path.exists(args[1]):
-                    raise SystemExit("Error: Could not find the second c/c++ file")
+                    raise SystemExit("Error: Could not find the second h/c/c++ file")
                 if not os.path.exists(args[1]) and not os.path.exists(args[2]):
                     raise SystemExit("Error: Could not find both two files")
             else:
@@ -64,7 +64,7 @@ if __name__ == '__main__':
                     seq1 = AST_Compare.seq_process(code_path_a, sel)
                     node_graph(code_path_a, sel, None)
                 else:
-                    raise SystemExit("Error: Could not find c/c++ file")
+                    raise SystemExit("Error: Could not find h/c/c++ file")
             else:
                 raise SystemExit("Usage: python main.py --view c_file_dir True/False ")
         elif args[0] == '--tojson':
@@ -91,13 +91,12 @@ if __name__ == '__main__':
                     json_file3 = json_files_dir + '/Module_names.json'
                     # json file4 restore the unnested dict
                     json_file4 = json_files_dir + '/uAST.json'
-                    if '.c' in code_path or '.cpp' in code_path:
+                    if '.c' in code_path or '.cpp' in code_path or '.h' in code_path:
                         code_path_list.append(code_path)
-                        node_list = Node_extract(code_path, sel)[0]
+                        node_list, name_all, node_list1 = Node_extract(code_path, sel)
                         node_list.insert(0, code_path)
-                        names.append(Node_extract(code_path, sel)[1])
+                        names.append(name_all)
                         to_json(node_list, json_file1, json_file2, False)
-                        node_list1 = Node_extract(code_path, sel)[0]
                         uAST = to_init_dict(node_list1, 0)[1]
                         print ('The total amount of the nodes is {}'.format(len(node_list1)))
                         with open(json_file3, 'w+') as f:
@@ -115,14 +114,13 @@ if __name__ == '__main__':
                         for path, di, filelist in g:
                             for filename in filelist:
                                 k = os.path.join(path, filename)
-                                if '.c' in k or '.cpp' in k:
+                                if '.c' in k or '.cpp' in k or '.h' in k:
                                     code_path_list.append(k)
                         for i in range(len(code_path_list)):
-                            node_list = Node_extract(code_path_list[i], sel)[0]
+                            node_list1, name_all, node_list = Node_extract(code_path_list[i], sel)
                             uAST = to_init_dict(node_list, i)[1]
                             AST_patch.append(uAST)
-                            names.append(Node_extract(code_path_list[i], sel)[1])
-                            node_list1 = Node_extract(code_path_list[i], sel)[0]
+                            names.append(name_all)
                             name = code_path_list[i]
                             node_list1.insert(0, name)
                             json_list.append(node_list1)
@@ -141,7 +139,7 @@ if __name__ == '__main__':
                         json.dump(code_path_list, f, ensure_ascii=False, indent=4)
                     f.close()
                 else:
-                    raise SystemExit("Error: Could not find c/c++ file")
+                    raise SystemExit("Error: Could not find h/c/c++ file")
             else:
                 raise SystemExit("Usage: python main.py --tojson c_file_dir True/False")
         elif args[0] == '--combine':
@@ -184,7 +182,7 @@ if __name__ == '__main__':
                         if Input_file >= len(file_path_list):
                             raise SystemExit("The file number is too large")
                         file_name = file_path_list[Input_file]
-                        node_list = Node_extract(file_name,sel)[0]
+                        node_list = Node_extract(file_name,sel)[2]
                         node_list_new = to_init_dict(node_list, Input_file)[1]
                         print ("###############The Result################")
                         print (str(file_name) + ":" + str(Input_line))

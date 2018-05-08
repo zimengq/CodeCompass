@@ -1,0 +1,323 @@
+// /home/jinzhenghui/ovs/ovn/controller-vtep/vtep.c
+digraph {
+	// VLOG_DEFINE_THIS_MODULE | FunctionDecl
+	{
+		000000120000 [label="VLOG_DEFINE_THIS_MODULE | FunctionDecl"]
+	}
+	// vtep_rec_physical_locator_list_entry definition | RecordDecl
+	{
+		000000130000 [label="vtep_rec_physical_locator_list_entry definition | RecordDecl"]
+		000000160000 [label="vteprec_physical_locator | RecordDecl"]
+		000000130000 -> 000000160000
+		000000140000 [label="ovs_list | RecordDecl"]
+		000000130000 -> 000000140000
+	}
+	// mmr_hash_node_data definition | RecordDecl
+	{
+		000000180000 [label="mmr_hash_node_data definition | RecordDecl"]
+		000000210000 [label="shash | RecordDecl"]
+		000000180000 -> 000000210000
+		000000190000 [label="vteprec_mcast_macs_remote | RecordDecl"]
+		000000180000 -> 000000190000
+	}
+	// get_chassis_vtep_ip | FunctionDecl
+	{
+		000000230000 [label="get_chassis_vtep_ip | FunctionDecl"]
+		000000240000 [label="sbrec_chassis | RecordDecl"]
+		000000230000 -> 000000240000
+	}
+	// strcmp | FunctionDecl
+	{
+		000000440000 [label="strcmp | FunctionDecl"]
+	}
+	// vteprec_ucast_macs_remote | RecordDecl
+	{
+		000000470000 [label="vteprec_ucast_macs_remote | RecordDecl"]
+	}
+	// create_umr | FunctionDecl
+	{
+		000000480000 [label="create_umr | FunctionDecl"]
+		000000500000 [label="vteprec_logical_switch | RecordDecl"]
+		000000480000 -> 000000500000
+		000000490000 [label="ovsdb_idl_txn | RecordDecl"]
+		000000480000 -> 000000490000
+	}
+	// vteprec_ucast_macs_remote_insert | FunctionDecl
+	{
+		000000800000 [label="vteprec_ucast_macs_remote_insert | FunctionDecl"]
+	}
+	// vteprec_ucast_macs_remote_set_MAC | FunctionDecl
+	{
+		000000810000 [label="vteprec_ucast_macs_remote_set_MAC | FunctionDecl"]
+	}
+	// vteprec_ucast_macs_remote_set_logical_switch | FunctionDecl
+	{
+		000000820000 [label="vteprec_ucast_macs_remote_set_logical_switch | FunctionDecl"]
+	}
+	// create_pl | FunctionDecl
+	{
+		000000830000 [label="create_pl | FunctionDecl"]
+		000000840000 [label="ovsdb_idl_txn | RecordDecl"]
+		000000830000 -> 000000840000
+	}
+	// vteprec_physical_locator_insert | FunctionDecl
+	{
+		000001060000 [label="vteprec_physical_locator_insert | FunctionDecl"]
+	}
+	// vteprec_physical_locator_set_dst_ip | FunctionDecl
+	{
+		000001070000 [label="vteprec_physical_locator_set_dst_ip | FunctionDecl"]
+	}
+	// vteprec_physical_locator_set_encapsulation_type | FunctionDecl
+	{
+		000001080000 [label="vteprec_physical_locator_set_encapsulation_type | FunctionDecl"]
+	}
+	// vtep_create_mmr | FunctionDecl
+	{
+		000001090000 [label="vtep_create_mmr | FunctionDecl"]
+		000001120000 [label="vteprec_physical_locator_set | RecordDecl"]
+		000001090000 -> 000001120000
+		000001110000 [label="vteprec_logical_switch | RecordDecl"]
+		000001090000 -> 000001110000
+		000001100000 [label="ovsdb_idl_txn | RecordDecl"]
+		000001090000 -> 000001100000
+	}
+	// vteprec_mcast_macs_remote_insert | FunctionDecl
+	{
+		000001470000 [label="vteprec_mcast_macs_remote_insert | FunctionDecl"]
+	}
+	// vteprec_mcast_macs_remote_set_MAC | FunctionDecl
+	{
+		000001480000 [label="vteprec_mcast_macs_remote_set_MAC | FunctionDecl"]
+	}
+	// vteprec_mcast_macs_remote_set_logical_switch | FunctionDecl
+	{
+		000001490000 [label="vteprec_mcast_macs_remote_set_logical_switch | FunctionDecl"]
+	}
+	// vteprec_mcast_macs_remote_set_locator_set | FunctionDecl
+	{
+		000001500000 [label="vteprec_mcast_macs_remote_set_locator_set | FunctionDecl"]
+	}
+	// vtep_process_pls | FunctionDecl
+	{
+		000001510000 [label="vtep_process_pls | FunctionDecl"]
+	}
+	// ovs_list_size | FunctionDecl
+	{
+		000001770000 [label="ovs_list_size | FunctionDecl"]
+	}
+	// LIST_FOR_EACH | FunctionDecl
+	{
+		000001780000 [label="LIST_FOR_EACH | FunctionDecl"]
+	}
+	// vtep_update_mmr | FunctionDecl
+	{
+		000001790000 [label="vtep_update_mmr | FunctionDecl"]
+		000001810000 [label="vteprec_logical_switch | RecordDecl"]
+		000001790000 -> 000001810000
+		000001800000 [label="ovsdb_idl_txn | RecordDecl"]
+		000001790000 -> 000001800000
+	}
+	// xmalloc | FunctionDecl
+	{
+		000002340000 [label="xmalloc | FunctionDecl"]
+	}
+	// vteprec_mcast_macs_remote_delete | FunctionDecl
+	{
+		000002350000 [label="vteprec_mcast_macs_remote_delete | FunctionDecl"]
+	}
+	// vteprec_physical_locator_set_insert | FunctionDecl
+	{
+		000002360000 [label="vteprec_physical_locator_set_insert | FunctionDecl"]
+	}
+	// vteprec_physical_locator_set_set_locators | FunctionDecl
+	{
+		000002370000 [label="vteprec_physical_locator_set_set_locators | FunctionDecl"]
+	}
+	// free | FunctionDecl
+	{
+		000002380000 [label="free | FunctionDecl"]
+	}
+	// vtep_lswitch_run | FunctionDecl
+	{
+		000002390000 [label="vtep_lswitch_run | FunctionDecl"]
+		000002400000 [label="sset | RecordDecl"]
+		000002390000 -> 000002400000
+	}
+	// SSET_INITIALIZER | FunctionDecl
+	{
+		000003330000 [label="SSET_INITIALIZER | FunctionDecl"]
+	}
+	// SHASH_FOR_EACH | FunctionDecl
+	{
+		000003340000 [label="SHASH_FOR_EACH | FunctionDecl"]
+	}
+	// smap_get | FunctionDecl
+	{
+		000003350000 [label="smap_get | FunctionDecl"]
+	}
+	// VLOG_ERR | FunctionDecl
+	{
+		000003360000 [label="VLOG_ERR | FunctionDecl"]
+	}
+	// shash_find_data | FunctionDecl
+	{
+		000003370000 [label="shash_find_data | FunctionDecl"]
+	}
+	// sset_find | FunctionDecl
+	{
+		000003380000 [label="sset_find | FunctionDecl"]
+	}
+	// VLOG_DBG | FunctionDecl
+	{
+		000003390000 [label="VLOG_DBG | FunctionDecl"]
+	}
+	// vteprec_logical_switch_set_tunnel_key | FunctionDecl
+	{
+		000003400000 [label="vteprec_logical_switch_set_tunnel_key | FunctionDecl"]
+	}
+	// vteprec_logical_switch_set_replication_mode | FunctionDecl
+	{
+		000003410000 [label="vteprec_logical_switch_set_replication_mode | FunctionDecl"]
+	}
+	// sset_add | FunctionDecl
+	{
+		000003420000 [label="sset_add | FunctionDecl"]
+	}
+	// sset_destroy | FunctionDecl
+	{
+		000003430000 [label="sset_destroy | FunctionDecl"]
+	}
+	// vtep_macs_run | FunctionDecl
+	{
+		000003440000 [label="vtep_macs_run | FunctionDecl"]
+		000003450000 [label="ovsdb_idl_txn | RecordDecl"]
+		000003440000 -> 000003450000
+	}
+	// hmap_init | FunctionDecl
+	{
+		000006320000 [label="hmap_init | FunctionDecl"]
+	}
+	// shash_init | FunctionDecl
+	{
+		000006330000 [label="shash_init | FunctionDecl"]
+	}
+	// ovs_list_init | FunctionDecl
+	{
+		000006340000 [label="ovs_list_init | FunctionDecl"]
+	}
+	// hmap_insert | FunctionDecl
+	{
+		000006350000 [label="hmap_insert | FunctionDecl"]
+	}
+	// hash_uint64 | FunctionDecl
+	{
+		000006360000 [label="hash_uint64 | FunctionDecl"]
+	}
+	// HMAP_FOR_EACH_WITH_HASH | FunctionDecl
+	{
+		000006370000 [label="HMAP_FOR_EACH_WITH_HASH | FunctionDecl"]
+	}
+	// VLOG_RATE_LIMIT_INIT | FunctionDecl
+	{
+		000006380000 [label="VLOG_RATE_LIMIT_INIT | FunctionDecl"]
+	}
+	// VLOG_INFO_RL | FunctionDecl
+	{
+		000006390000 [label="VLOG_INFO_RL | FunctionDecl"]
+	}
+	// shash_add | FunctionDecl
+	{
+		000006400000 [label="shash_add | FunctionDecl"]
+	}
+	// ovs_list_push_back | FunctionDecl
+	{
+		000006410000 [label="ovs_list_push_back | FunctionDecl"]
+	}
+	// xasprintf | FunctionDecl
+	{
+		000006420000 [label="xasprintf | FunctionDecl"]
+	}
+	// shash_find_and_delete | FunctionDecl
+	{
+		000006430000 [label="shash_find_and_delete | FunctionDecl"]
+	}
+	// VLOG_WARN | FunctionDecl
+	{
+		000006440000 [label="VLOG_WARN | FunctionDecl"]
+	}
+	// vteprec_ucast_macs_remote_set_locator | FunctionDecl
+	{
+		000006450000 [label="vteprec_ucast_macs_remote_set_locator | FunctionDecl"]
+	}
+	// vteprec_ucast_macs_remote_delete | FunctionDecl
+	{
+		000006460000 [label="vteprec_ucast_macs_remote_delete | FunctionDecl"]
+	}
+	// HMAP_FOR_EACH_SAFE | FunctionDecl
+	{
+		000006470000 [label="HMAP_FOR_EACH_SAFE | FunctionDecl"]
+	}
+	// vtep_lswitch_cleanup | FunctionDecl
+	{
+		000006480000 [label="vtep_lswitch_cleanup | FunctionDecl"]
+		000006490000 [label="ovsdb_idl | RecordDecl"]
+		000006480000 -> 000006490000
+	}
+	// VTEPREC_LOGICAL_SWITCH_FOR_EACH | FunctionDecl
+	{
+		000006680000 [label="VTEPREC_LOGICAL_SWITCH_FOR_EACH | FunctionDecl"]
+	}
+	// vtep_ucast_macs_cleanup | FunctionDecl
+	{
+		000006690000 [label="vtep_ucast_macs_cleanup | FunctionDecl"]
+		000006700000 [label="ovsdb_idl | RecordDecl"]
+		000006690000 -> 000006700000
+	}
+	// VTEPREC_UCAST_MACS_REMOTE_FOR_EACH | FunctionDecl
+	{
+		000006880000 [label="VTEPREC_UCAST_MACS_REMOTE_FOR_EACH | FunctionDecl"]
+	}
+	// vtep_mcast_macs_cleanup | FunctionDecl
+	{
+		000006890000 [label="vtep_mcast_macs_cleanup | FunctionDecl"]
+		000006900000 [label="ovsdb_idl | RecordDecl"]
+		000006890000 -> 000006900000
+	}
+	// VTEPREC_MCAST_MACS_REMOTE_FOR_EACH | FunctionDecl
+	{
+		000007080000 [label="VTEPREC_MCAST_MACS_REMOTE_FOR_EACH | FunctionDecl"]
+	}
+	// vtep_run | FunctionDecl
+	{
+		000007090000 [label="vtep_run | FunctionDecl"]
+		000007100000 [label="controller_vtep_ctx | RecordDecl"]
+		000007090000 -> 000007100000
+	}
+	// SHASH_INITIALIZER | FunctionDecl
+	{
+		000007500000 [label="SHASH_INITIALIZER | FunctionDecl"]
+	}
+	// VTEPREC_PHYSICAL_SWITCH_FOR_EACH | FunctionDecl
+	{
+		000007510000 [label="VTEPREC_PHYSICAL_SWITCH_FOR_EACH | FunctionDecl"]
+	}
+	// VTEPREC_PHYSICAL_LOCATOR_FOR_EACH | FunctionDecl
+	{
+		000007520000 [label="VTEPREC_PHYSICAL_LOCATOR_FOR_EACH | FunctionDecl"]
+	}
+	// shash_destroy | FunctionDecl
+	{
+		000007530000 [label="shash_destroy | FunctionDecl"]
+	}
+	// vtep_cleanup | FunctionDecl
+	{
+		000007540000 [label="vtep_cleanup | FunctionDecl"]
+		000007550000 [label="controller_vtep_ctx | RecordDecl"]
+		000007540000 -> 000007550000
+	}
+	// ovsdb_idl_txn_add_comment | FunctionDecl
+	{
+		000007630000 [label="ovsdb_idl_txn_add_comment | FunctionDecl"]
+	}
+}

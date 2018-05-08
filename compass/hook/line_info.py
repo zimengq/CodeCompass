@@ -14,7 +14,7 @@ class FindModule:
 			for j in range(1, len(node_all[i])):
 				if node_all[i][j]['node_name'] != 'null':
 					if 'null' not in node_all[i][j]['coord']:
-						if output_dict.has_key(node_all[i][j]['node_name']):
+						if node_all[i][j]['node_name'] in output_dict.keys():
 							output_line = node_all[i][j]['coord'][0][6:10] + node_all[i][j]['coord'][0][0:6] + node_all[i][j]['coord'][1][0:6]
 							output_dict[node_all[i][j]['node_name']].append(output_line)
 						else:
@@ -39,7 +39,7 @@ class FindModule:
 if __name__ == '__main__':
 	findmod = FindModule()
 	out_dict = findmod.generate_dict()
-	file_path = "./line_dict.json"
+	file_path = "./jsons/line_dict_new.json"
 	with open(file_path, 'w+') as f1:
 		json.dump(out_dict, f1, ensure_ascii=False, indent=4)
 	f1.close()

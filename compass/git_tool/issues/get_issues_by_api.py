@@ -26,7 +26,7 @@ def get_issues(owner, repo, page):
     Using Github API.
     Allow request 10 times per minute.
     """
-    url = 'https://api.github.com/repos/%s/%s/issues?page=%i' % (owner, repo, page)
+    url = 'https://api.github.com/repos/%s/%s/issues?page=%i？client_id=bfb2f68f744e4018554d' % (owner, repo, page)
     results = requests.get(url)
     """HTTP status code, 200 means OK"""
     if results.status_code == 200:

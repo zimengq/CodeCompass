@@ -60,12 +60,6 @@
     <script src="/static/sigma.js-1.2.1/plugins/sigma.layout.forceAtlas2/worker.js"></script>
     <script src="/static/sigma.js-1.2.1/plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
     <!-- END SIGMA IMPORTS -->
-
-    <script src="/static/rainbow/js/rainbow.min.js"></script>
-    <script src="/static/rainbow/js/language/generic.js"></script>
-    <script src="/static/rainbow/js/language/python.js"></script>
-    <script src="/static/rainbow/js/language/java.js"></script>
-    <script src="/static/rainbow/js/language/c.js"></script>
 </head>
     <body>
         <div id="initDom">
@@ -110,12 +104,31 @@
         </div>
     </body>
     <script type="text/javascript">
-        function createCodeDom(text) {
-            document.getElementById("code").innerHTML = `
-                <pre>
-                    <code data-language="c">{0}</code>
-                </pre>
-            `.format(text);
+        function searchLineInfo(fileID, lineID) {
+            $.ajax({
+                type: "POST",
+                url: "/getLineInfo",
+                data: JSON.stringify({'fileID': fileID, 'lineID':lineID}),
+                dataType: "json",
+                success: function (message) {
+
+                },
+                error: function (message) {
+
+                }
+            });
+        }
+
+        function createCodeDom(codeSections) {
+            var HTML = "";
+            for (var fileID in codeSections) {
+                for (lineID in codeSections[fileID]) {
+                    HTML = HTML + `
+                        <pre onmouseover="searchLineInfo('{1}', {2})">{0}</pre>
+                    `.format(codeSections[fileID][lineID], fileID, lineID);
+                }
+            }
+            document.getElementById("code").innerHTML = HTML;
         }
         function createNotificationDom(text, type) {
             document.getElementById("notification").innerHTML = `

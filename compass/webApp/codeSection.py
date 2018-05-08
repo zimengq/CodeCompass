@@ -12,21 +12,22 @@ def find_code(keyword, lineDictPath, fileDictPath, codeBasePath):
 	f1.close()
 
 	line_info = line_dict[keyword]
-	output_str = ""
+	file_dict = dict()
 	for j in range(len(line_info)):
-		file_num = int(line_info[j][0:4])
-		begin_line = int(line_info[j][4:10])
-		end_line = int(line_info[j][10:16])
-		file_name = file_path[file_num].replace("/home/jinzhenghui", codeBasePath)
-		output_str += file_path[file_num] + ":" + str(begin_line) + "-" + str(end_line) + "\n"
+		file_num = int(line_info[j][0:8])
+		begin_line = int(line_info[j][8:16])
+		end_line = int(line_info[j][16:24])
+		file_name = file_path[file_num].replace("/home/zjin", codeBasePath)
 		with open(file_name) as file_content:
 			check_point = 0
+			line_info_dict = dict()
 			for line in file_content:
 				check_point += 1
 				if begin_line <= check_point and end_line >= check_point:
-					output_str += line
-		output_str += "\n"
-	return output_str
+					line_num = "%08d" % (check_point) + "%08d" % (file_num)
+					line_info_dict[line_num] = line.replace('\n', '')
+		file_dict[file_path[file_num].replace("/home/zjin","") + ":" + str(begin_line) + "-" + str(end_line)] = line_info_dict
+	return file_dict
 
 """print find_code("add_logical_flows", 
 				"/home/kakaiu/testDataForCompass/line_dict_new.json", 

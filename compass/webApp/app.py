@@ -15,14 +15,18 @@ def index():
 
 @app.route("/search", methods=['POST'])
 def search():
-<<<<<<< HEAD
-	query = json.loads(request.get_data())
-	print(query)
-	return jsonify({'test':'hello'}), 201
-=======
 	keyword = json.loads(request.get_data())['query'].encode('utf-8')
 	result = graph.query(keyword)
 	return jsonify({'graph':result}), 201
+
+@app.route("/getLineInfo", methods=['POST'])
+def getLineInfo():
+	tmp = json.loads(request.get_data())
+	fileID = tmp['fileID'].encode('utf-8')
+	lineID = tmp['lineID']
+	print(fileID)
+	print(lineID)
+	return jsonify({'tmp':'hello'}), 201
 
 @app.route("/getCodeSection", methods=['POST'])
 def getCodeSection():
@@ -32,7 +36,6 @@ def getCodeSection():
 					"/home/kakaiu/testDataForCompass/file_path.json", 
 					"/home/kakaiu/testDataForCompass")
 	return jsonify({'codeSection':result}), 201
->>>>>>> 92dfc56af450100b41c3b1e6c0a1fae21eb663c9
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=80)

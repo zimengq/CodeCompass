@@ -292,7 +292,7 @@ def find_module(line_number):
         if Input_file >= len(file_path_list):
             raise SystemExit("The file number is too large")
         file_name = file_path_list[Input_file]
-        node_list = Node_extract(file_name,True)[0]
+        node_list = Node_extract(file_name,True)[2]
         node_list_new = to_init_dict(node_list, Input_file)[1]
         print ("###############The Result################")
         print (str(file_name) + ":" + str(Input_line))

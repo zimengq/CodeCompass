@@ -128,8 +128,10 @@ def Node_extract(code_path, preprocess):
             new_sentence2 = re.sub(r'@@(.*?)@@', "", new_sentence1)
             if re.findall(RE_FUNC, new_sentence2)[-1] != ' ':
                 name = re.findall(RE_FUNC, new_sentence2)[-1]
+                name_save = re.findall(RE_FUNC, new_sentence2)[-1]
             else:
                 name = re.findall(RE_FUNC, new_sentence2)[-2]
+                name_save = re.findall(RE_FUNC, new_sentence2)[-2]
             func_name_list.append(name)
         elif "CXXRecordDecl" in new_line:
             if 'class' in lines:

@@ -34,7 +34,7 @@ def find_code(keyword):
 				if begin_line <= check_point and end_line >= check_point:
 					line_num = "%08d" % (check_point) + "%08d" % (file_num)
 					line_info_dict[line_num] = line
-		file_dict[str(line_info)] = line_info_dict
+		file_dict[str(line_info[j])] = line_info_dict
 	return file_dict
 
 if __name__ == "__main__":

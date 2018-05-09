@@ -20,7 +20,8 @@ RE_SUB = re.compile(r'@@(.*?)@@')
 
 def AST_preprocess(code_path):
     """Preprocess of the code. Remove the head files and standard libraries"""
-    if '.c' in code_path and '.cpp' not in code_path:
+    suffix = os.path.splitext(code_path)
+    if suffix == '.c':
         try:
             path_new = './example/test_new.c'
             with open(code_path , 'r') as f:
@@ -35,7 +36,7 @@ def AST_preprocess(code_path):
             f_new.close()
         except:
             path_new = code_path
-    elif '.cpp' in code_path:
+    elif suffix == '.cpp':
         try:
             path_new = './example/test_new.cpp'
             with open(code_path , 'r') as f:
@@ -50,7 +51,7 @@ def AST_preprocess(code_path):
             f_new.close()
         except:
             path_new = code_path
-    elif '.h' in code_path:
+    elif suffix == '.h':
         try:
             path_new = './example/test_new.h'
             with open(code_path , 'r') as f:
@@ -65,6 +66,19 @@ def AST_preprocess(code_path):
             f_new.close()
         except:
             path_new = code_path
+    elif suffix == '.hpp':
+        try:
+            path_new = './example/test_new.hpp'
+            with open(code_path , 'r') as f:
+                lines = f.readlines()
+            f.close()
+
+            with open(path_new , 'w') as f_new:
+                for line in lines:
+                    if '#include' in line:
+                        line = '\n'
+                    f_new.write(line)
+            f_new.close()
     return path_new
 
 def AST_generate(code_path, preprocess):

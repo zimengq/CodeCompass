@@ -11,6 +11,7 @@ import sys
 import os
 import re
 import json
+import datetime
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -91,7 +92,7 @@ if __name__ == '__main__':
                     json_file3 = json_files_dir + '/Module_names.json'
                     # json file4 restore the unnested dict
                     json_file4 = json_files_dir + '/uAST.json'
-                    if '.c' in code_path or '.cpp' in code_path or '.h' in code_path:
+                    if '.c' in code_path or '.cpp' in code_path or '.h' in code_path or '.hpp' in code_path:
                         code_path_list.append(code_path)
                         node_list, name_all, node_list1 = Node_extract(code_path, sel)
                         node_list.insert(0, code_path)
@@ -114,7 +115,8 @@ if __name__ == '__main__':
                         for path, di, filelist in g:
                             for filename in filelist:
                                 k = os.path.join(path, filename)
-                                if '.c' in k or '.cpp' in k or '.h' in k:
+                                suffix = os.path.splitext(k)
+                                if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp':
                                     code_path_list.append(k)
                         for i in range(len(code_path_list)):
                             node_list1, name_all, node_list = Node_extract(code_path_list[i], sel)
@@ -172,8 +174,8 @@ if __name__ == '__main__':
                 else:
                     if os.path.exists(dir_path + '/jsons/AST.json') and os.path.exists(dir_path + '/jsons/file_path.json'):
                         Input_id = args[1]
-                        Input_line = int(Input_id[0:6])
-                        Input_file = int(Input_id[6:10])
+                        Input_line = int(Input_id[0:8])
+                        Input_file = int(Input_id[8:16])
                         max = 0
                         count = 0
                         with open(dir_path + '/jsons/file_path.json') as f1:
@@ -192,8 +194,8 @@ if __name__ == '__main__':
                                 if line_range[0] != 'null' and line_range[1] != 'null' :
                                     first_line = line_range[0]
                                     last_line = line_range[1]
-                                    line_number1 = int(first_line[0:6])
-                                    line_number2 = int(last_line[0:6])
+                                    line_number1 = int(first_line[0:8])
+                                    line_number2 = int(last_line[0:8])
                                     if line_number2 > max :
                                         max = line_number2
                                     if line_number1 != line_number2:

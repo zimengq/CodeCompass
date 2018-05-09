@@ -121,19 +121,19 @@
             });
         }
 
-        function getStartLineNum(lineID) {
-            console.warn(lineID.slice(8,15));
-            return parseInt(lineID.slice(8,15));
+        function getStartLineNum(fileID) {
+            console.warn(fileID);
+            console.warn(parseInt(fileID.slice(8,16)));
+            return parseInt(fileID.slice(8,16));
         }
 
         function createCodeDom(codeSections) {
             var HTML = "";
+            console.warn(codeSections);
             for (var fileID in codeSections) {
                 count = 0;
                 for (lineID in codeSections[fileID]) {
-                    console.warn(fileID, lineID);
                     var lineNUM = getStartLineNum(fileID) + count;
-                    console.warn(lineNUM);
                     HTML = HTML + `
                         <pre id="{3}" onmouseover="searchLineInfo('{1}', {2})">{0}</pre>
                     `.format(codeSections[fileID][lineID], fileID, lineID, lineNUM);

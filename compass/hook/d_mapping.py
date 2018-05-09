@@ -5,21 +5,24 @@ import os
 import re
 import json
 
-RE_FILENAME = re.compile(r'(.*?):')
-RE_LINERANGE = re.compile(r':(.*)')
 RE_AUTHOR = re.compile(r'Author: (.*?) <')
 RE_GITINFO = re.compile(r'@@(.*?)@@')
 RE_MINUS = re.compile(r'a(.*?) b')
 RE_PLUS = re.compile(r'b(.*?) ')
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 home_path = os.path.expandvars('$HOME')
 
 def get_author(input_file, input_line):
-	file_origin_name = re.findall(RE_FILENAME, input_file)[0]
-	file_range = re.findall(RE_LINERANGE, input_file)[0].split('-')
+	with open(dir_path + '/jsons/file_path.json') as f:
+		file_path = json.load(f)
+	f.close()
+
+	file_origin_name = file_path[int(input_file[0:8])].replace("/home/zjin", home_path)
+	file_range = [int(input_file[8:16]), int(input_file[16:24])]
 	true_id = "%016d"%(int(input_line))
 	line_num = int(true_id[0:8])
-	out_list = get_gitlog(home_path + file_origin_name)
+	out_list = get_gitlog(file_origin_name)
 	author_name = out_list[line_num - 1]
 	other_list = []
 	for i in range(len(out_list)):
@@ -149,6 +152,6 @@ def plus_op(input_list, chan_lines, plu_info, name):
 	return input_list
 
 if __name__ == "__main__":
-    file_name = "/ovs/vswitchd/xenserver.c:20-30"
-    line_info = "2800000012"
+    file_name = "000000860000002600000032"
+    line_info = "2600000086"
     print (get_author(file_name, line_info))

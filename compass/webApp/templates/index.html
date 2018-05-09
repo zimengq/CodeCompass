@@ -111,7 +111,9 @@
                 data: JSON.stringify({'fileID': fileID, 'lineID':lineID}),
                 dataType: "json",
                 success: function (message) {
-
+                    var developerName = message['developerName'];
+                    var lineNumList = message['lineNumList'];
+                    console.warn(developerName, lineNumList);
                 },
                 error: function (message) {
 
@@ -119,13 +121,23 @@
             });
         }
 
+        function getStartLineNum(lineID) {
+            console.warn(lineID.slice(8,15));
+            return parseInt(lineID.slice(8,15));
+        }
+
         function createCodeDom(codeSections) {
             var HTML = "";
             for (var fileID in codeSections) {
+                count = 0;
                 for (lineID in codeSections[fileID]) {
+                    console.warn(fileID, lineID);
+                    var lineNUM = getStartLineNum(fileID) + count;
+                    console.warn(lineNUM);
                     HTML = HTML + `
-                        <pre onmouseover="searchLineInfo('{1}', {2})">{0}</pre>
-                    `.format(codeSections[fileID][lineID], fileID, lineID);
+                        <pre id="{3}" onmouseover="searchLineInfo('{1}', {2})">{0}</pre>
+                    `.format(codeSections[fileID][lineID], fileID, lineID, lineNUM);
+                    count = count + 1;
                 }
             }
             document.getElementById("code").innerHTML = HTML;

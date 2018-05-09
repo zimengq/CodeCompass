@@ -1,7 +1,7 @@
 #!flask/bin/python
 from flask import Flask, render_template, jsonify, request
 import json
-import semanticGraph, codeSection
+import semanticGraph, codeSection, commitHistory
 
 nodeFilePath = "/home/kakaiu/testDataForCompass/node.json"
 edgeFilePath = "/home/kakaiu/testDataForCompass/edge.json"
@@ -24,9 +24,8 @@ def getLineInfo():
 	tmp = json.loads(request.get_data())
 	fileID = tmp['fileID'].encode('utf-8')
 	lineID = tmp['lineID']
-	print(fileID)
-	print(lineID)
-	return jsonify({'tmp':'hello'}), 201
+	result = commitHistory.get_author(fileID, lineID, '/home/kakaiu/testDataForCompass')
+	return jsonify({'developerName':result[0], 'lineNumList':result[1]}), 201
 
 @app.route("/getCodeSection", methods=['POST'])
 def getCodeSection():

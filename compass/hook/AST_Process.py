@@ -20,7 +20,7 @@ RE_SUB = re.compile(r'@@(.*?)@@')
 
 def AST_preprocess(code_path):
     """Preprocess of the code. Remove the head files and standard libraries"""
-    suffix = os.path.splitext(code_path)
+    suffix = os.path.splitext(code_path)[1]
     if suffix == '.c':
         try:
             path_new = './example/test_new.c'
@@ -79,6 +79,8 @@ def AST_preprocess(code_path):
                         line = '\n'
                     f_new.write(line)
             f_new.close()
+        except:
+            path_new = code_path
     return path_new
 
 def AST_generate(code_path, preprocess):

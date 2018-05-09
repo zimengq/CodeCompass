@@ -26,7 +26,7 @@ def find_code(keyword, lineDictPath, fileDictPath, codeBasePath):
 				if begin_line <= check_point and end_line >= check_point:
 					line_num = "%08d" % (check_point) + "%08d" % (file_num)
 					line_info_dict[line_num] = line.replace('\n', '')
-		file_dict[file_path[file_num].replace("/home/zjin","") + ":" + str(begin_line) + "-" + str(end_line)] = line_info_dict
+		file_dict[str(line_info)] = line_info_dict
 	return file_dict
 
 """print find_code("add_logical_flows", 

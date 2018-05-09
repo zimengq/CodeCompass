@@ -113,7 +113,9 @@
                 success: function (message) {
                     var developerName = message['developerName'];
                     var lineNumList = message['lineNumList'];
-                    console.warn(developerName, lineNumList);
+                    for (var i=0; i<lineNumList.length; i++) {
+                        document.getElementById(fileID+'_'+lineNumList[i]).innerHTML="1";
+                    }
                 },
                 error: function (message) {
 
@@ -136,7 +138,7 @@
                     var lineNUM = getStartLineNum(fileID) + count;
                     HTML = HTML + `
                         <pre id="{3}" onmouseover="searchLineInfo('{1}', {2})">{0}</pre>
-                    `.format(codeSections[fileID][lineID], fileID, lineID, lineNUM);
+                    `.format(codeSections[fileID][lineID], fileID, lineID, fileID+'_'+lineNUM);
                     count = count + 1;
                 }
             }

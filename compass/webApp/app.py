@@ -24,7 +24,9 @@ def getLineInfo():
 	tmp = json.loads(request.get_data())
 	fileID = tmp['fileID'].encode('utf-8')
 	lineID = tmp['lineID']
-	result = commitHistory.get_author(fileID, lineID, '/home/kakaiu/testDataForCompass')
+	result = commitHistory.get_author(fileID, lineID, 
+						'/home/kakaiu/testDataForCompass', 
+						"/home/kakaiu/testDataForCompass/file_path.json")
 	return jsonify({'developerName':result[0], 'lineNumList':result[1]}), 201
 
 @app.route("/getCodeSection", methods=['POST'])

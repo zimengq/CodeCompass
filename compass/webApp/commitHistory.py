@@ -12,10 +12,13 @@ RE_GITINFO = re.compile(r'@@(.*?)@@')
 RE_MINUS = re.compile(r'a(.*?) b')
 RE_PLUS = re.compile(r'b(.*?) ')
 
-def get_author(input_file, input_line, databasePath):
-	input_file = databasePath + input_file
-	file_origin_name = re.findall(RE_FILENAME, input_file)[0]
-	file_range = re.findall(RE_LINERANGE, input_file)[0].split('-')
+def get_author(input_file, input_line, databasePath, filePathDictPath):
+	with open(filePathDictPath) as f:
+		file_path = json.load(f)
+	f.close()
+
+	file_origin_name = file_path[int(input_file[0:8])].replace("/home/zjin", databasePath)
+	file_range = [int(input_file[8:16]), int(input_file[16:24])]
 	true_id = "%016d"%(int(input_line))
 	line_num = int(true_id[0:8])
 	out_list = get_gitlog(file_origin_name)

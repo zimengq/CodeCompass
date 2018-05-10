@@ -181,9 +181,9 @@ if __name__ == '__main__':
                                 if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp':
                                     code_path_list.append(k)
                         for i in range(len(code_path_list)):
-                            count += 1
                             node_list1, name_all, node_list = Node_extract(code_path_list[i], sel)
                             uAST = to_init_dict(node_list, count)[1]
+                            count += 1
                             AST_patch.append(uAST)
                             names.append(name_all)
                             name = code_path_list[i]

@@ -19,7 +19,6 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 def to_init_dict(node_list, id):
     """Transform the node list into nested dictionary"""
-    print (id)
     node_list_cp = node_list[:]
     cp_list = []
     # func_num_list = []

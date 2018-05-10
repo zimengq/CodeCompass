@@ -144,6 +144,69 @@ if __name__ == '__main__':
                     raise SystemExit("Error: Could not find h/c/c++ file")
             else:
                 raise SystemExit("Usage: python main.py --tojson c_file_dir True/False")
+        elif args[0] == '--multdir':
+            if len(args[1:]) == 4:
+                if args[4] != 'True' and args[4] != 'False':
+                    raise SystemExit("Please use 'True' or 'False' to choose whether you need to remove the headers")
+                else:
+                    if args[4] == 'True':
+                        sel = True
+                    else:
+                        sel = False
+                json_files_dir = dir_path + '/jsons'
+                # json_file1 is a nested dict
+                json_file1 = json_files_dir + '/AST.json'
+                # json file2 is the trace of each node
+                json_file2 = json_files_dir + '/trace.json'
+                # json file3 restore the name of each module
+                json_file3 = json_files_dir + '/Module_names.json'
+                # json file4 restore the unnested dict
+                json_file4 = json_files_dir + '/uAST.json'
+                json_list = []
+                AST_patch = []
+                code_path_list = []
+                names = []
+                count = 0
+                node_len = 0
+                for dir_index in range(len(args[1:4])):
+                    if os.path.exists(args[1+dir_index]):
+                        code_path = args[1+dir_index]
+                        if not os.path.exists(json_files_dir):
+                            os.mkdir(json_files_dir)
+                        g = os.walk(code_path)
+                        for path, di, filelist in g:
+                            for filename in filelist:
+                                k = os.path.join(path, filename)
+                                suffix = os.path.splitext(k)[1]
+                                if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp':
+                                    code_path_list.append(k)
+                        for i in range(len(code_path_list)):
+                            count += 1
+                            node_list1, name_all, node_list = Node_extract(code_path_list[i], sel)
+                            uAST = to_init_dict(node_list, count)[1]
+                            AST_patch.append(uAST)
+                            names.append(name_all)
+                            name = code_path_list[i]
+                            node_list1.insert(0, name)
+                            json_list.append(node_list1)
+                            node_len += len(node_list1)
+                    else:
+                        raise SystemExit("Error: Could not find h/c/c++ file")
+                print ('The total amount of the nodes is {}'.format(node_len))
+                with open(json_file3, 'w+') as f:
+                    json.dump(names, f, ensure_ascii=False, indent=4)
+                f.close()
+                with open(json_file4, 'w+') as f1:
+                    json.dump(AST_patch, f1, ensure_ascii=False, indent=4)
+                f1.close()
+                to_json(json_list, json_file1, json_file2, True)
+                print ("The json file path: "+json_files_dir)
+                code_path_file = dir_path + "/jsons/file_path.json"
+                with open(code_path_file, 'w+') as f:
+                    json.dump(code_path_list, f, ensure_ascii=False, indent=4)
+                f.close()
+            else:
+                raise SystemExit("Usage: python main.py --multdir c_file_dir1 c_file_dir2 c_file_dir3 True/False")
         elif args[0] == '--combine':
             if len(args[1:]) == 2:
                 if args[2] != 'True' and args[2] != 'False':
@@ -214,6 +277,6 @@ if __name__ == '__main__':
             else:
                 raise SystemExit("Usage: python main.py --find_module LINE_ID True/False")
         else:
-            raise SystemExit("Usage: python main.py --compare c_file_dir1 c_file_dir2 True/False \n       python main.py --view c_file_dir True/False \n       python main.py --tojson c_file_dir True/False \n       python main.py --combine c_file_dir1 c_file_dir2 True/False \n       python main.py --find_module LINE_ID True/False  ")
+            raise SystemExit("Usage: python main.py --compare c_file_dir1 c_file_dir2 True/False \n       python main.py --view c_file_dir True/False \n       python main.py --tojson c_file_dir True/False \n       python main.py --combine c_file_dir1 c_file_dir2 True/False \n       python main.py --find_module LINE_ID True/False \n       python main.py --multdir c_file_dir1 c_file_dir2 c_file_dir3 True/False  ")
     else:
-        raise SystemExit("Usage: python main.py --compare c_file_dir1 c_file_dir2 True/False \n       python main.py --view c_file_dir True/False \n       python main.py --tojson c_file_dir True/False \n       python main.py --combine c_file_dir1 c_file_dir2 True/False \n       python main.py --find_module LINE_ID True/False  ")
+        raise SystemExit("Usage: python main.py --compare c_file_dir1 c_file_dir2 True/False \n       python main.py --view c_file_dir True/False \n       python main.py --tojson c_file_dir True/False \n       python main.py --combine c_file_dir1 c_file_dir2 True/False \n       python main.py --find_module LINE_ID True/False \n       python main.py --multdir c_file_dir1 c_file_dir2 c_file_dir3 True/False  ")

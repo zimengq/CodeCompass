@@ -15,10 +15,10 @@ class FindModule:
 				if node_all[i][j]['node_name'] != 'null':
 					if 'null' not in node_all[i][j]['coord']:
 						if node_all[i][j]['node_name'] in output_dict.keys():
-							output_line = node_all[i][j]['coord'][0][6:10] + node_all[i][j]['coord'][0][0:6] + node_all[i][j]['coord'][1][0:6]
+							output_line = node_all[i][j]['coord'][0][8:16] + node_all[i][j]['coord'][0][0:8] + node_all[i][j]['coord'][1][0:8]
 							output_dict[node_all[i][j]['node_name']].append(output_line)
 						else:
-							output_line = node_all[i][j]['coord'][0][6:10] + node_all[i][j]['coord'][0][0:6] + node_all[i][j]['coord'][1][0:6]
+							output_line = node_all[i][j]['coord'][0][8:16] + node_all[i][j]['coord'][0][0:8] + node_all[i][j]['coord'][1][0:8]
 							output_dict[node_all[i][j]['node_name']] = [output_line]
 
 		return output_dict
@@ -32,7 +32,7 @@ class FindModule:
 	        for j in range(1, len(node_all[i])):
 	        	if mod_name == node_all[i][j]['node_name']:
 	        		if 'null' not in node_all[i][j]['coord']:
-	        			output_line = node_all[i][j]['coord'][0][6:10] + node_all[i][j]['coord'][0][0:6] + node_all[i][j]['coord'][1][0:6]
+	        			output_line = node_all[i][j]['coord'][0][8:16] + node_all[i][j]['coord'][0][0:8] + node_all[i][j]['coord'][1][0:8]
 	        			output_list.append(output_line)
 	    return output_list
 

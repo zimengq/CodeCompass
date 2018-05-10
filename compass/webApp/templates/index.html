@@ -77,7 +77,7 @@
             <div id="searchBox" class='container'>
                 <br><br>
                 <div class='row'>
-                    <div class='col-lg-12'>
+                    <div class='col-lg-6'>
                         <form onsubmit="return false;">
                             <div class="input-group">
                                 <span class="input-group-btn">
@@ -87,6 +87,9 @@
                             </div>
                         </form>
                         <div id="notification"></div>
+                    </div>
+                    <div class='col-lg-6'>
+                        <div id="developerInfo"></div>
                     </div>
                 </div>
             </div>
@@ -112,9 +115,15 @@
                 dataType: "json",
                 success: function (message) {
                     var developerName = message['developerName'];
+                    showDeveloperInfo(developerName);
                     var lineNumList = message['lineNumList'];
+                    var lineStartNum = getStartLineNum(fileID);
+                    var lineEndNum = getEndLineNum(fileID);
+                    for (var i=lineStartNum; i<lineEndNum; i++) {
+                        document.getElementById(fileID+'_'+i.toString()).style.color="black";
+                    }
                     for (var i=0; i<lineNumList.length; i++) {
-                        document.getElementById(fileID+'_'+lineNumList[i]).innerHTML="1";
+                        document.getElementById(fileID+'_'+lineNumList[i]).style.color="blue";
                     }
                 },
                 error: function (message) {
@@ -124,10 +133,13 @@
         }
 
         function getStartLineNum(fileID) {
-            console.warn(fileID);
-            console.warn(parseInt(fileID.slice(8,16)));
             return parseInt(fileID.slice(8,16));
         }
+
+        function getEndLineNum(fileID) {
+            return parseInt(fileID.slice(16,24));
+        }
+
 
         function createCodeDom(codeSections) {
             var HTML = "";
@@ -171,6 +183,9 @@
         }
         function removeBrand() {
             document.getElementById("brand").innerHTML = "";
+        }
+        function showDeveloperInfo(info) {
+            document.getElementById("developerInfo").innerHTML = info;
         }
     </script>
     <script type="text/javascript">

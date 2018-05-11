@@ -31,21 +31,21 @@ First install Clang and Graphviz with:
     
 Then we will get five json files in ./jsons/
 
-AST.json: Save abstract syntax tree of a script or trees of projects in nested dictionary. 
+**AST.json**: Save abstract syntax tree of a script or trees of projects in nested dictionary. 
 
-uAST.json: Save AST in unnested dictionary
+**uAST.json**: Save AST in unnested dictionary
 
-file_path.json: Save the absolute paths of scripts. 
+**file_path.json**: Save the absolute paths of scripts. 
 
-Module_names.json: Save the names of functions or classes in nested lists. 
+**Module_names.json**: Save the names of functions or classes in nested lists. 
 
-trace.json: Save the trace information of all the nodes. 
+**trace.json**: Save the trace information of all the nodes. 
 
 ### We can arrange the funciton and class names by 
 
     $ python line_info.py
     
-Then we will get line_dict_new.json, which saves the function or class names and the line IDs they appear for each. 
+Then we will get **line_dict_new.json**, which saves the function or class names and the line IDs they appear for each. 
 
 ## Generate AST graph with Graphviz
 

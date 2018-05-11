@@ -5,5 +5,5 @@ parsedAST = analyzer.convert_ast("/home/kakaiu/testDataForCompass/parsed_ast.jso
 
 analyzer.get_graph(parsedAST)
 analyzer.check()
-analyzer.saveNode("/home/kakaiu/testDataForCompass/node.json")
-analyzer.saveEdge("/home/kakaiu/testDataForCompass/edge.json")
+analyzer.save_node("/home/kakaiu/testDataForCompass/node.json")
+analyzer.save_edge("/home/kakaiu/testDataForCompass/edge.json")

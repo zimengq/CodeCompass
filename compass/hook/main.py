@@ -179,7 +179,7 @@ if __name__ == '__main__':
                             for filename in filelist:
                                 k = os.path.join(path, filename)
                                 suffix = os.path.splitext(k)[1]
-                                if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp':
+                                if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp' or suffix == '.cc':
                                     path_list.append(k)
                         code_path_list += path_list
                         for i in range(len(path_list)):

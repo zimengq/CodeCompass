@@ -81,6 +81,21 @@ def AST_preprocess(code_path):
             f_new.close()
         except:
             path_new = code_path
+    elif suffix == '.cc':
+        try:
+            path_new = './example/test_new.cc'
+            with open(code_path , 'r') as f:
+                lines = f.readlines()
+            f.close()
+
+            with open(path_new , 'w') as f_new:
+                for line in lines:
+                    if '#include' in line:
+                        line = '\n'
+                    f_new.write(line)
+            f_new.close()
+        except:
+            path_new = code_path
     return path_new
 
 def AST_generate(code_path, preprocess):

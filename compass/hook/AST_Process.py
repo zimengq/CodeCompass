@@ -155,13 +155,17 @@ def Node_extract(code_path, preprocess):
                 if len(class_name1):
                     name_save = class_name1[0]
                     if " definition" in name_save:
-                        name_save.replace(" definition", "")
+                        name_save = name_save.replace(" definition", "")
                     class_name_list.append(name_save)
                 else:
                     name_save = 'null'
                 class_name2 = re.findall(RE_CLASS, lines)
                 if len(class_name2):
                     name = class_name2[0]
+                    if name == "definition":
+                        name = 'null'
+                    elif " definition" in name:
+                        name = name.replace(" definition", "")
                 else:
                     name = 'null'
             elif 'struct' in lines:
@@ -169,13 +173,17 @@ def Node_extract(code_path, preprocess):
                 if len(struct_name1):
                     name_save = struct_name1[0]
                     if " definition" in name_save:
-                        name_save.replace(" definition", "")
+                        name_save = name_save.replace(" definition", "")
                     class_name_list.append(name_save)
                 else:
                     name_save = 'null'
                 struct_name2 = re.findall(RE_STRUCT, lines)
                 if len(struct_name2):
                     name = struct_name2[0]
+                    if name == "definition":
+                        name = 'null'
+                    elif " definition" in name:
+                        name = name.replace(" definition", "")
                 else:
                     name = 'null'
         elif "RecordDecl" in new_line:
@@ -183,13 +191,17 @@ def Node_extract(code_path, preprocess):
             if len(struct_name1):
                 name_save = struct_name1[0]
                 if " definition" in name_save:
-                    name_save.replace(" definition", "")
+                    name_save = name_save.replace(" definition", "")
                 class_name_list.append(name_save)
             else:
                 name_save = 'null'
             struct_name2 = re.findall(RE_STRUCT, lines)
             if len(struct_name2):
                 name = struct_name2[0]
+                if name == "definition":
+                    name = 'null'
+                elif " definition" in name:
+                    name = name.replace(" definition", "")
             else:
                 name = 'null'
         else:
@@ -199,3 +211,7 @@ def Node_extract(code_path, preprocess):
         Node_dict_save['node_name'] = name_save
     name_list = [func_name_list,class_name_list]
     return [node_list,name_list,node_list_save]
+
+if __name__ == "__main__":
+    file_path = "/home/jinzhenghui/ovs/vswitchd/bridge.c"
+    ss = Node_extract(file_path, True)[0]

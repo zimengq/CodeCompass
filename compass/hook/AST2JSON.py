@@ -67,6 +67,10 @@ def to_dict(node_list, id):
 
     node_list_cp = linenum_extract(node_list_cp, num_list, id)
     first_sublist = []
+    for index_num in range(len(num_list)):
+        if num_list[index_num] == max(num_list):
+            node_list_cp[index_num+1]['_subnode'] = []
+
     for y in range(max(num_list) - 2, 0, -2):
         for x in range(len(num_list) - 1, -1, -1):
             if num_list[x] == y:

@@ -47,6 +47,16 @@ Then we will get five json files in ./jsons/
     
 Then we will get **line_dict_new.json**, which saves the function or class names and the line IDs they appear for each. 
 
+## Author Mapping by Lines 
+
+In Code-Compass/compass/git_tool/rt_history, we prepare a script named **d_mapping.py** to map the developer, who recently 
+modified the code, to the lines he revised. The input of this system is the line_range ID appears **in line_dict_new.json** 
+and the line ID of we want to map. 
+
+However, in the mapping process, we may encounter the situation that the list assignment index out of range. Because some 
+developers may delete some pieces of their git history. As we get the author for each line by tracing the git history from the 
+initial git, we can not get the whole mapping relationship in this case. 
+
 ## Generate AST graph with Graphviz
 
     $ python main.py --view c_file_dir True/False

@@ -5,7 +5,7 @@
 # Licensed under the GNU LGPL v2.1 - http://www.gnu.org/licenses/lgpl.html
 
 """
-Crawler for Github repository issues using Github API
+Crawler for Github repository pull request using Github API
 """
 
 import os
@@ -15,30 +15,33 @@ import logging
 import pymysql.cursors
 
 JSON_DIR = 'data/'
-JSON_FILE = 'issues_api.json'
+JSON_FILE = 'pull_request.json'
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
-def get_issues(owner, repo, page):
+def get_pull_request(owner, repo, page):
     """
     Using Github API.
     Allow request 10 times per minute without developer id.
     Allow request 5000 times per minute with developer id.
     """
-    url = 'https://api.github.com/repos/%s/%s/issues?page=%i?client_id=bfb2f68f744e4018554d' % (owner, repo, page)
+    url = 'https://api.github.com/repos/%s/%s/pulls?client_id=bfb2f68f744e4018554d&' \
+          'client_secret=d446db072d8a9c6dc2f495404b059c39fc2ab38f' % (owner, repo)
     results = requests.get(url)
     """HTTP status code, 200 means OK"""
     if results.status_code == 200:
         logger.info('Fetched page #%i success!' % page)
+    elif results.status_code == 403:
+        raise ConnectionError
     return results.json()
 
 
 def iter_over_pages(owner, repo, pages):
     data_list = []
     for page in range(1, pages):
-        data = get_issues(owner, repo, page)
+        data = get_pull_request(owner, repo, page)
         if not len(data):
             break
         data_list.extend(data)
@@ -72,6 +75,10 @@ def insert_to_json(data):
             json.dump(data, f, indent=4)
 
 
+"""
+For debugging
+"""
 if __name__ == '__main__':
-    issues = iter_over_pages('tensorflow', 'tensorflow', pages=100)
-    insert_to_json(issues)
+    # pull_request = iter_over_pages('tensorflow', 'tensorflow', pages=100)
+    pull_request = get_pull_request('tensorflow', 'tensorflow', page=1)
+    insert_to_json(pull_request)

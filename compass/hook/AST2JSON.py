@@ -14,6 +14,8 @@ RE_LINENUM = re.compile(r'line:(.*?):')
 RE_FILE_C = re.compile(r'.c:(.*?):')
 RE_FILE_CPP = re.compile(r'.cpp:(.*?):')
 RE_FILE_H = re.compile(r'.h:(.*?):')
+RE_FILE_HPP = re.compile(r'.hpp:(.*?):')
+RE_FILE_CC = re.compile(r'.cc:(.*?):')
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -182,8 +184,17 @@ def linenum_extract(node_list, num_list, id):
     for i in range(1, len(node_list)):
         coordinate = node_list[i]['coord']
         if '.c' in coordinate or '.cpp' in coordinate:
-            if '.cpp' not in coordinate:
+            if '.cpp' not in coordinate and '.cc' not in coordinate:
                 line_info1 = re.findall(RE_FILE_C, coordinate)
+                line_info2 = re.findall(RE_LINENUM, coordinate)
+                if len(line_info1) > 0 and len(line_info2) > 0:
+                    line_begin = "%08d"%(int(line_info1[0])) + "%08d"%(id)
+                    line_end = "%08d"%(int(line_info2[0])) + "%08d"%(id)
+                    node_list_new[i]['coord'] = [line_begin,line_end]
+                else:
+                    node_list_new[i]['coord'] = 'null'
+            elif '.cc' in coordinate:
+                line_info1 = re.findall(RE_FILE_CC, coordinate)
                 line_info2 = re.findall(RE_LINENUM, coordinate)
                 if len(line_info1) > 0 and len(line_info2) > 0:
                     line_begin = "%08d"%(int(line_info1[0])) + "%08d"%(id)
@@ -202,6 +213,15 @@ def linenum_extract(node_list, num_list, id):
                     node_list_new[i]['coord'] = 'null'
         elif '.h' in coordinate:
             line_info1 = re.findall(RE_FILE_H, coordinate)
+            line_info2 = re.findall(RE_LINENUM, coordinate)
+            if len(line_info1) > 0 and len(line_info2) > 0:
+                line_begin = "%08d"%(int(line_info1[0])) + "%08d"%(id)
+                line_end = "%08d"%(int(line_info2[0])) + "%08d"%(id)
+                node_list_new[i]['coord'] = [line_begin,line_end]
+            else:
+                node_list_new[i]['coord'] = 'null'
+        elif '.hpp' in coordinate:
+            line_info1 = re.findall(RE_FILE_HPP, coordinate)
             line_info2 = re.findall(RE_LINENUM, coordinate)
             if len(line_info1) > 0 and len(line_info2) > 0:
                 line_begin = "%08d"%(int(line_info1[0])) + "%08d"%(id)

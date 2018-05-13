@@ -12,11 +12,50 @@ First install Clang and Graphviz with:
     $ sudo pip install graphviz
 
 ## Write into json
-This project can convert syntax tree into json format
+### We have three modes to save a script or a project or multiple projects in json format.
+
+(1) Save a script
+
+    $ python main.py --tojson c_script True/False
+    $ python main.py --tojson ./example/test.c True
+    
+(2) Save a project
 
     $ python main.py --tojson c_file_dir True/False
+    $ python main.py --tojson /home/<user-name>/ovs True
+    
+(3) Save three multiple projects
 
-![Image text](https://github.com/king-jojo/Screenshots/blob/master/codetracker/ast2json.png)
+    $ python main.py --multdir c_file_dir1 c_file_dir2 c_file_dir3 True/False
+    $ python main.py --multdir /home/<user-name>/ovs /home/<user-name>/ceph /home/<user-name>/protobuf True
+    
+Then we will get five json files in ./jsons/
+
+**AST.json**: Save abstract syntax tree of a script or trees of projects in nested dictionary. 
+
+**uAST.json**: Save AST in unnested dictionary
+
+**file_path.json**: Save the absolute paths of scripts. 
+
+**Module_names.json**: Save the names of functions or classes in nested lists. 
+
+**trace.json**: Save the trace information of all the nodes. 
+
+### We can arrange the funciton and class names by 
+
+    $ python line_info.py
+    
+Then we will get **line_dict_new.json**, which saves the function or class names and the line IDs they appear for each. 
+
+## Author Mapping by Lines 
+
+In Code-Compass/compass/git_tool/rt_history, we prepare a script named **d_mapping.py** to map the developer, who recently 
+modified the code, to the lines he revised. The input of this system is the line_range ID appears **in line_dict_new.json** 
+and the line ID of we want to map. 
+
+However, in the mapping process, we may encounter the situation that the list assignment index out of range. Because some 
+developers may delete some pieces of their git history. As we get the author for each line by tracing the git history from the 
+initial git, we can not get the whole mapping relationship in this case. 
 
 ## Generate AST graph with Graphviz
 

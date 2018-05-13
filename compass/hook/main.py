@@ -171,6 +171,7 @@ if __name__ == '__main__':
                 for dir_index in range(len(args[1:4])):
                     if os.path.exists(args[1+dir_index]):
                         code_path = args[1+dir_index]
+                        path_list = []
                         if not os.path.exists(json_files_dir):
                             os.mkdir(json_files_dir)
                         g = os.walk(code_path)
@@ -178,15 +179,16 @@ if __name__ == '__main__':
                             for filename in filelist:
                                 k = os.path.join(path, filename)
                                 suffix = os.path.splitext(k)[1]
-                                if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp':
-                                    code_path_list.append(k)
-                        for i in range(len(code_path_list)):
-                            node_list1, name_all, node_list = Node_extract(code_path_list[i], sel)
+                                if suffix == '.c' or suffix == '.cpp' or suffix == '.h' or suffix == '.hpp' or suffix == '.cc':
+                                    path_list.append(k)
+                        code_path_list += path_list
+                        for i in range(len(path_list)):
+                            node_list1, name_all, node_list = Node_extract(path_list[i], sel)
                             uAST = to_init_dict(node_list, count)[1]
                             count += 1
                             AST_patch.append(uAST)
                             names.append(name_all)
-                            name = code_path_list[i]
+                            name = path_list[i]
                             node_list1.insert(0, name)
                             json_list.append(node_list1)
                             node_len += len(node_list1)

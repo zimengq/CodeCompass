@@ -4,6 +4,7 @@ import datetime
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
+
 class FindModule:
 	def generate_dict(self):
 		output_dict = dict()

@@ -38,6 +38,21 @@ def get_pull_request(owner, repo, page):
     return results.json()
 
 
+def get_single_pr(url):
+    """
+    Using Github API.
+    Allow request 10 times per minute without developer id.
+    Allow request 5000 times per minute with developer id.
+    """
+    results = requests.get(url)
+    """HTTP status code, 200 means OK"""
+    if results.status_code == 200:
+        logger.info('Fetched pr #%s success!' % url)
+    elif results.status_code == 403:
+        raise ConnectionError
+    return results.json()
+
+
 def iter_over_pages(owner, repo, pages):
     data_list = []
     for page in range(1, pages):

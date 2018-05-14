@@ -8,20 +8,16 @@
 Crawler for Github repository pull request code
 """
 
-import os
-import re
 import logging
 import json
 import requests
-import pymysql.cursors
-from bs4 import BeautifulSoup
 from semantic.utilities import *
 from git_tool.history.commit_history.get_info import *
 
 PR_DIR = 'data/'
 PR_FILE = 'pull_request.json'
-OUT_FILE = 'pr_code.json'
-REGEX = re.compile("^@@")
+DIFF_FILE = 'pr_code.json'
+CODE_FILE = 'code2pr.json'
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -42,17 +38,27 @@ def get_response_data(diff_url):
 
 
 def load_pr_info(pr_file):
-    diff_list = []
+    diff_dict = {}
+    code_dict = {}
     pr_data = load_json(pr_file)
     for pr in pr_data:
         logger.info("Processing pr #%i" % pr['number'])
         diff_url = pr['diff_url']
         diff_data = get_response_data(diff_url)
-        diff_module_name = parse_diff(diff_data)
-        diff_list.append(diff_module_name)
-    return diff_list
+        diff_code = parse_diff(diff_data)
+        if pr['number'] not in diff_dict:
+            diff_dict[pr['number']] = []
+        diff_dict[pr['number']].append(diff_code)
+        for code in diff_code:
+            for line in code:
+                if line not in code_dict:
+                    code_dict[line] = []
+                if len(line) > 5:
+                    code_dict[line].append(pr['url'])
+    return diff_dict, code_dict
 
 
 if __name__ == '__main__':
-    diff = load_pr_info(PR_DIR + PR_FILE)
-    save_json(diff, PR_DIR + OUT_FILE)
+    diff, code = load_pr_info(PR_DIR + PR_FILE)
+    save_json(diff, PR_DIR + DIFF_FILE)
+    save_json(code, PR_DIR + CODE_FILE)

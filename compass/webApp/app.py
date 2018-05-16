@@ -1,10 +1,10 @@
 #!flask/bin/python
 from flask import Flask, render_template, jsonify, request
 import json
-import semanticGraph, codeSection, commitHistory
+import semanticGraph, codeSection, commitHistory, prInfo
 
-nodeFilePath = "/home/kakaiu/testDataForCompass/node.json"
-edgeFilePath = "/home/kakaiu/testDataForCompass/edge.json"
+nodeFilePath = "/home/kakaiu/testDataForCompass/nodes.json"
+edgeFilePath = "/home/kakaiu/testDataForCompass/edges.json"
 
 app = Flask(__name__)
 graph = semanticGraph.semanticGraph(nodeFilePath, edgeFilePath)
@@ -37,6 +37,12 @@ def getCodeSection():
 					"/home/kakaiu/testDataForCompass/file_path.json", 
 					"/home/kakaiu/testDataForCompass")
 	return jsonify({'codeSection':result}), 201
+
+@app.route("/getPRInfo", methods=['POST'])
+def getPRInfo():
+	codeLine = json.loads(request.get_data())['codeLine'].encode('utf-8')
+	result = prInfo.getPRInfo(codeLine, "/home/kakaiu/testDataForCompass/code2pr.json")
+	return jsonify({'prLinks':result}), 201
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0',port=80)

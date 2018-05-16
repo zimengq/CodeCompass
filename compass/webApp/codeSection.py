@@ -2,7 +2,6 @@ import os
 import json
 
 def find_code(keyword, lineDictPath, fileDictPath, codeBasePath):
-
 	with open(lineDictPath) as f:
 		line_dict = json.load(f)
 	f.close()

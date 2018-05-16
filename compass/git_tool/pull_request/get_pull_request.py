@@ -20,7 +20,6 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-
 def get_pull_request(owner, repo, page):
     """
     Using Github API.

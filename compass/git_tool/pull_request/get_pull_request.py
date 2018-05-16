@@ -95,5 +95,5 @@ For debugging
 """
 if __name__ == '__main__':
     # pull_request = iter_over_pages('tensorflow', 'tensorflow', pages=100)
-    pull_request = get_pull_request('tensorflow', 'tensorflow', page=1)
+    pull_request = get_pull_request('openvswitch', 'ovs', page=1)
     insert_to_json(pull_request)

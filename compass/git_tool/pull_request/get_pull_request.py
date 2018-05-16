@@ -20,7 +20,6 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-
 def get_pull_request(owner, repo, page):
     """
     Using Github API.
@@ -95,5 +94,5 @@ For debugging
 """
 if __name__ == '__main__':
     # pull_request = iter_over_pages('tensorflow', 'tensorflow', pages=100)
-    pull_request = get_pull_request('tensorflow', 'tensorflow', page=1)
+    pull_request = get_pull_request('openvswitch', 'ovs', page=1)
     insert_to_json(pull_request)

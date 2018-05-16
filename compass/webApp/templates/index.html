@@ -90,6 +90,7 @@
                     </div>
                     <div class='col-lg-6'>
                         <div id="developerInfo"></div>
+                        <div id="prInfo"></div>
                     </div>
                 </div>
             </div>
@@ -107,7 +108,7 @@
         </div>
     </body>
     <script type="text/javascript">
-        function searchLineInfo(fileID, lineID) {
+        function searchInfo(fileID, lineID, codeLine) {
             $.ajax({
                 type: "POST",
                 url: "/getLineInfo",
@@ -125,6 +126,19 @@
                     for (var i=0; i<lineNumList.length; i++) {
                         document.getElementById(fileID+'_'+lineNumList[i]).style.color="blue";
                     }
+                },
+                error: function (message) {
+
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/getPRInfo",
+                data: JSON.stringify({'codeLine': codeLine}),
+                dataType: "json",
+                success: function (message) {
+                    var prLinks = message['prLinks'];
+                    showPRInfo(prLinks);
                 },
                 error: function (message) {
 
@@ -149,7 +163,7 @@
                 for (lineID in codeSections[fileID]) {
                     var lineNUM = getStartLineNum(fileID) + count;
                     HTML = HTML + `
-                        <pre id="{3}" onmouseover="searchLineInfo('{1}', {2})">{0}</pre>
+                        <pre id="{3}" onmouseover="searchInfo('{1}', {2}, '{0}')">{0}</pre>
                     `.format(codeSections[fileID][lineID], fileID, lineID, fileID+'_'+lineNUM);
                     count = count + 1;
                 }
@@ -186,6 +200,11 @@
         }
         function showDeveloperInfo(info) {
             document.getElementById("developerInfo").innerHTML = info;
+        }
+        function showPRInfo(prLinks) {
+            for (var i=0; i<prLinks.length; i++) {
+                document.getElementById("prInfo").innerHTML = prLinks[i];
+            }
         }
     </script>
     <script type="text/javascript">
@@ -316,6 +335,7 @@
                     data: JSON.stringify({'declaration': declaration}),
                     dataType: "json",
                     success: function (message) {
+                        showDeveloperInfo('');
                         createCodeDom(message['codeSection']);
                     },
                     error: function (message) {

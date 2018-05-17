@@ -18,10 +18,12 @@ PR_DIR = 'data/'
 PR_FILE = 'pull_request.json'
 DIFF_FILE = 'pr_code.json'
 CODE_FILE = 'code2pr.json'
+REGEX = re.compile("[a-zA-Z0-9]")
 
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
+
 
 def parse_diff(data):
     code = []
@@ -50,9 +52,9 @@ def load_pr_info(pr_file):
         diff_dict[pr['number']].append(diff_code)
         for code in diff_code:
             for line in code:
-                if line not in code_dict:
-                    code_dict[line] = []
-                if len(line) > 5:
+                if REGEX.findall(line):
+                    if line not in code_dict:
+                        code_dict[line] = []
                     code_dict[line].append(pr['url'])
     return diff_dict, code_dict
 

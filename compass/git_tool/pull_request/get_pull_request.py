@@ -20,12 +20,15 @@ logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
+
 def get_pull_request(owner, repo, page):
     """
     Using Github API.
     Allow request 10 times per minute without developer id.
     Allow request 5000 times per minute with developer id.
     """
+    # url = 'https://api.github.com/repos/%s/%s/pulls?page=%i?client_id=bfb2f68f744e4018554d&' \
+    #       'client_secret=d446db072d8a9c6dc2f495404b059c39fc2ab38f' % (owner, repo, page)
     url = 'https://api.github.com/repos/%s/%s/pulls?client_id=bfb2f68f744e4018554d&' \
           'client_secret=d446db072d8a9c6dc2f495404b059c39fc2ab38f' % (owner, repo)
     results = requests.get(url)
@@ -93,6 +96,6 @@ def insert_to_json(data):
 For debugging
 """
 if __name__ == '__main__':
-    # pull_request = iter_over_pages('tensorflow', 'tensorflow', pages=100)
-    pull_request = get_pull_request('openvswitch', 'ovs', page=1)
+    # pull_request = iter_over_pages('ceph', 'ceph', pages=100)
+    pull_request = get_pull_request('ceph', 'ceph', page=1)
     insert_to_json(pull_request)

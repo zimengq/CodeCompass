@@ -1,9 +1,10 @@
-package SegAndAbbreviate;
+package SegAndLemmatization;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 
-import static SegAndAbbreviate.Segment.NameConvention.*;
+import static SegAndLemmatization.Segment.NameConvention.*;
 
 public class Segment {
     String rawName ;
@@ -17,14 +18,15 @@ public class Segment {
         style = styleDetection(name);
         ArrayList<String> nameSegments = convertToSegement(name,style);
         for (String segment : nameSegments){
-            nameList.add(getAbbreviation(segment));
+            nameList.add(getLemma(segment));
         }
 
     }
 
-    String getAbbreviation(String original){
+    String getLemma(String original){
         String ret = original;
-        //TODO
+        Properties props = new Properties();
+        props.setProperty("annotators","lemma");
         return ret;
     }
 
@@ -78,7 +80,7 @@ public class Segment {
     public String toString() {
         String ret = "";
         for (String segment : nameList){
-            ret = ret.concat(segment + "|");
+            ret = ret.concat(segment + " ");
         }
         ret = ret.concat("["+style.toString()+"]");
         return ret;

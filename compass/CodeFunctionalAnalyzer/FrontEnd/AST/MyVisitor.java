@@ -1,6 +1,6 @@
 package AST;
 
-import SegAndAbbreviate.Segment;
+import SegAndLemmatization.Segment;
 
 public class MyVisitor extends CBaseVisitor<Integer> implements CVisitor<Integer> {
     @Override

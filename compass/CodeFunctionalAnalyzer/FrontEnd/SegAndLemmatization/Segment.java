@@ -11,7 +11,7 @@ public class Segment {
     enum NameConvention{
         CAMEL , UNDERSCORE, DEFAULT
     }
-    ArrayList<String> nameList;
+    ArrayList<String> nameList = new ArrayList<>();
     NameConvention style;
     public Segment(String name){
         rawName = name;

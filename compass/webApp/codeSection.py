@@ -16,7 +16,9 @@ def find_code(keyword, lineDictPath, fileDictPath, codeBasePath):
 		file_num = int(line_info[j][0:8])
 		begin_line = int(line_info[j][8:16])
 		end_line = int(line_info[j][16:24])
-		file_name = file_path[file_num].replace("/home/zjin", codeBasePath)
+		print file_path[file_num]
+		print codeBasePath
+		file_name = file_path[file_num].replace("/home/user0", codeBasePath)
 		with open(file_name) as file_content:
 			check_point = 0
 			line_info_dict = dict()
@@ -29,7 +31,7 @@ def find_code(keyword, lineDictPath, fileDictPath, codeBasePath):
 	return file_dict
 
 """print find_code("add_logical_flows", 
-				"/home/kakaiu/testDataForCompass/line_dict_new.json", 
-				"/home/kakaiu/testDataForCompass/file_path.json", 
-				"/home/kakaiu/testDataForCompass")
+				"/home/user0/testDataForCompass/line_dict_new.json", 
+				"/home/user0/testDataForCompass/file_path.json", 
+				"/home/user0/testDataForCompass")
 """

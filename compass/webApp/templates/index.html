@@ -63,17 +63,6 @@
 </head>
     <body>
         <div id="initDom">
-            <br><br>
-            <div id="brand" class='container'>
-                <br><br>
-                <div class='row'>
-                    <div style="text-align: center;">
-                        <a class='branding' href='/' title='compass(指南针)'>
-                            <img src='/static/assets/img/iconfont-iconyonghuzhinan.png' style='width:80px; height:80px;' style="margin: 0 auto;">
-                        </a>
-                    </div>
-                </div>
-            </div>
             <div id="searchBox" class='container'>
                 <br><br>
                 <div class='row'>
@@ -195,9 +184,6 @@
             }
             createViz(relations);
         }
-        function removeBrand() {
-            document.getElementById("brand").innerHTML = "";
-        }
         function showDeveloperInfo(info) {
             document.getElementById("developerInfo").innerHTML = info;
         }
@@ -217,7 +203,6 @@
                 data: JSON.stringify({'query': queryText}),
                 dataType: "json",
                 success: function (message) {
-                    removeBrand();
                     cleanNotificationDom();
                     createResultDom(message['graph']);
                 },

@@ -2,97 +2,170 @@
 
 
 
-void thePrintf(int array[], int size)
-{
-    int i;
 
-    for (i = 0;i < size;i++)
-    {
-        printf ("%d ", array[i]);
-    }
-    printf ("\r\n\r\n");
+
+
+
+
+
+
+
+void do_open_wr(const char *fname, int *fd)
+{
+	*fd = open(fname, O_WRONLY | O_CREAT, 0644);
+	if (*fd < 0) {
+		perror("open");
+		exit(1);
+	}
 }
 
-void maxHeapFilterDown (int array[], int index, int size)
+void do_open_rd(const char *fname, int *fd)
 {
-    int dad, son, temp;
-
-    dad = index;
-    temp = array[dad];
-    son = dad * 2 +1;
-    while(son < size)
-    {
-        if (son + 1 < size && array[son + 1] > array[son])  //左右子节点中寻找较大键值
-        {
-            son++;
-        }
-
-        if (array[son] <= temp) //新的父节点值
-        {
-            break;
-        }
-        array[dad] = array[son];
-        dad = son;
-        son = dad * 2 + 1;
-    }
-    array[dad] = temp;
+	*fd = open(fname, O_RDONLY);
+	if (*fd < 0) {
+		perror("open");
+		exit(1);
+	}
 }
 
-void buildMaxHeap (int array[], int size)
+void do_lseek(int fd, int ofs)
 {
-    int index;
-
-    for (index = size / 2 - 1;index >= 0;index--)
-    {
-        maxHeapFilterDown (array, index, size);
-    }
+	int rc = lseek(fd, ofs, SEEK_SET);
+	if (rc < 0) {
+		perror("lseek");
+		exit(1);
+	}
 }
 
-void heapSortInc (int array[], int size)
+void do_write(int fd, int len)
 {
-    int temp;
-    int n;
-    buildMaxHeap (array, size);
-    for (n = size - 1;n >0;n--)
-    {
-    	temp = array[n];
-        array[n] = array[0];
-        array[0] = temp;
-        maxHeapFilterDown (array, 0, n);
-        
-    }
+	char *buf = malloc(len);
+	int rc;
+	if (!buf) {
+		printf("not enough memory\n");
+		exit(1);
+	}
+
+	memset(buf, 0, len);
+	rc = safe_write(fd, buf, len);
+	if (rc) {
+		fprintf(stderr, "safe_write failed with error %d (%s)\n",
+			rc, strerror(rc));
+		exit(1);
+	}
+
+	if (rc != len) {
+		printf("invalid number of bytes written\n");
+		exit(1);
+	}
+
+	free(buf);
 }
 
-int main (void)
+void do_link(const char *old, const char *new)
 {
-    FILE *thisArray;
-    int *array, size, i, value;
-    char thisString[128];
-    
-    thisArray = fopen("randNums.txt", "rb");
-    if (NULL == thisArray)
-    {
-        fprintf (stderr, "File Open Error.\r\n");
-        return -1;
-    }
+	int rc = link(old, new);
+	if (rc < 0) {
+		perror("link");
+		exit(1);
+	}
+}
 
-    fscanf(thisArray, "%d", &size);
-    array = (int *)malloc(size * sizeof(int));
-    if (NULL == array)
-    {
-        fprintf (stderr, "Malloc Array Error.\r\n");
-        return -1;
-    }
-    for (i = 0;i < size;i++)
-    {
-        fscanf (thisArray, "%d", &value);
-        array[i] = value;
-    }
+void do_clone_range(int from, int to, int off, int len)
+{
+	struct btrfs_ioctl_clone_range_args a;
+	int r;
 
-    thePrintf(array, size);
-    heapSortInc(array, size);
-    thePrintf(array, size);
-    free(array);
-    getchar();
-    return 0;
+	a.src_fd = from;
+	a.src_offset = off;
+	a.src_length = len;
+	a.dest_offset = off;
+	r = ioctl(to, BTRFS_IOC_CLONE_RANGE, &a);
+	if (r < 0) {
+		perror("ioctl");
+		exit(1);
+	}
+}
+
+void do_snap_async(int fd, const char *name, unsigned long long *transid)
+{
+	struct btrfs_ioctl_async_vol_args async_args;
+	struct btrfs_ioctl_vol_args volargs;
+	int r;
+
+	strcpy(volargs.name, name);
+	volargs.fd = fd;
+
+	async_args.args = &volargs;
+	async_args.transid = transid;
+
+	r = ioctl(fd, BTRFS_IOC_SNAP_CREATE_ASYNC, &async_args);
+
+	if (r < 0) {
+		perror("ioctl");
+		exit(1);
+	}
+}
+
+void do_snap_destroy(int fd, const char *name)
+{
+	struct btrfs_ioctl_vol_args volargs;
+	int r;
+
+	strcpy(volargs.name, name);
+	volargs.fd = 0;
+
+	r = ioctl(fd, BTRFS_IOC_SNAP_DESTROY, &volargs);
+
+	if (r < 0) {
+		perror("snap_destroy: ioctl");
+		exit(1);
+	}
+}
+
+void do_snap_wait(int fd, unsigned long long transid)
+{
+	int r = ioctl(fd, BTRFS_IOC_WAIT_SYNC, &transid);
+	if (r < 0) {
+		perror("do_snap_wait: ioctl");
+		exit(1);
+	}
+}
+
+void usage_exit(char *arg)
+{
+	printf("usage: %s <btrfs_base> <snap_name>\n", arg);
+	exit(1);
+}
+
+#define TEMP_FILENAME "temp"
+#define DEST_FILENAME "dest"
+#define SRC_FILENAME "src"
+
+int main(int argc, char *argv[])
+{
+	const char *base_dir;
+	const char *snap_name;
+
+	int fd;
+	int i;
+	unsigned long long transid;
+
+	if (argc < 3)
+		usage_exit(argv[0]);
+
+	base_dir = argv[1];
+	snap_name = argv[2];
+
+	for (i=0; i<10; i++) {
+		printf("%d\n", i);
+		do_open_rd(base_dir, &fd);
+		do_snap_async(fd, snap_name, &transid);
+		sleep(2);
+		//do_snap_wait(fd, transid);
+		do_snap_destroy(fd, snap_name);
+		close(fd);
+	}
+	
+	return 0;
 }

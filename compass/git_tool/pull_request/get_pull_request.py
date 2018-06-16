@@ -12,7 +12,6 @@ import os
 import json
 import requests
 import logging
-import pymysql.cursors
 
 JSON_DIR = 'data/'
 JSON_FILE = 'pull_request.json'

@@ -11,6 +11,8 @@ Crawler for Github repository pull request code
 import logging
 import json
 import requests
+import sys
+sys.path.extend(['..', '../..'])
 from semantic.utilities import *
 from git_tool.history.commit_history.get_info import *
 

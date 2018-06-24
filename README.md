@@ -1,4 +1,4 @@
-# Code Compass - Toward Knowledge System in Software Engineering
+# Code Compass - Knowledge System for Software Engineering
 
 ## knowledge based search engine for software development
 - search C/C++ components (class/function) by keywords

@@ -1,6 +1,6 @@
 # Knowledge System for Software Engineering
 
-## knowledge based search engine for software development
+## Function
 - search C/C++ components (class/function) by keywords
 - present structural information, like associations among code blocks   
 - present developer information of lines of code

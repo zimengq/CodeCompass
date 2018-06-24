@@ -1,10 +1,10 @@
-# Code Compass - Toward Knowledge Systems in Software Engineering
+# Code Compass - Toward Knowledge System in Software Engineering
 
-## Objectives
-- to formulate ideas (abstract).
-- to modify the source code according to the idea.
-- to verify the change meeting the idea.
-- to make sure the change does not break other parts.
+## knowledge based search engine for software development
+- search C/C++ components (class/function) by keywords
+- present structural information, like associations among code blocks   
+- present developer information of lines of code
+- present pr information of lines of code
 
 ## Whole Picture
 - requirement (scenario with natural language)

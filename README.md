@@ -19,10 +19,15 @@ A knowledge-based explorable search engine providing all-round informations for 
     - interactively presenting PR infos for the code block
     
 - scalable backend associating code structure, history and PR by linking them with a line of code
-    - given a set of C/C++ repos, establishing index of these repos according to their component (struct/function/class) declarations
+    - given a set of C/C++ repos (code base), establishing index of these repos according to their component (struct/function/class) declarations
     - associating between a line of code and components (struct/function/class) via code graph
     - associating between a line of code and developers via analyzing commit history
     - associating between a line of code and PR info via bugzilla(vmware) or github(open source)
+    
+## Prospects
+- getting reusable code blocks from the code base with keywords
+- inferring quality of the code block by evaluating its developers
+- recommending developers who are suitable for writing a component from zero
 
 ## How it works
 ### 1. Prepare Environment

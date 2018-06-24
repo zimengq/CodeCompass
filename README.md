@@ -13,6 +13,11 @@ A knowledge-based explorable search engine providing all-round informations for 
 
 ## Aspects
 - UI with high-level interactivity and density of information
+    - given a keyword, interactively presenting connectivity of components which declaration contains the keyword
+    - interactively presenting code blocks of the component
+    - interactively presenting developers for the code block
+    - interactively presenting PR infos for the code block
+    
 - scalable backend associating code structure, history and PR
     - connections between a line of code and components (struct/function/class) via code graph
     - connections between a line of code and developers via analyzing commit history

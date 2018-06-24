@@ -19,6 +19,7 @@ A knowledge-based explorable search engine providing all-round informations for 
     - interactively presenting PR infos for the code block
     
 - scalable backend associating code structure, history and PR
+    - given a set of C/C++ repos, establishing index of these repos according to their component (struct/function/class) declarations
     - connections between a line of code and components (struct/function/class) via code graph
     - connections between a line of code and developers via analyzing commit history
     - connections between a line of code and PR info via bugzilla(vmware) or github(open source)

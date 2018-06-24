@@ -1,6 +1,6 @@
-# Knowledge System for Software Engineering
+# Knowledge-based System for Software Engineering
 
-## Establish Knowledge System
+## Establish Knowledge-based System
 - build connetions among domain informations, like code structure, history and PR
 - provide services for explorations during software development
 

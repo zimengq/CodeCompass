@@ -5,7 +5,14 @@
 - provide services for explorations during software development
 
 ## Functions
-- search C/C++ components (class/function) by keywords
+- search C/C++ components (struct/function/class) by keywords
 - present structural information, like associations among code blocks   
 - present developer information of lines of code
 - present PR information of lines of code
+
+## Aspects
+- UI with high-level interactivity and density of information
+- scalable backend for associated information, considering code structure, history and PR
+- building connections between lines of code and components (struct/function/class) via code graph
+- building connections between lines of code and developers via analyzing commit history
+- building connections between lines of code and PR info via bugzilla(vmware) or github(open source)

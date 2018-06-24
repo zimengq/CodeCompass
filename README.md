@@ -12,13 +12,13 @@ A knowledge-based explorable search engine providing all-round informations for 
 - present PR information of lines of code
 
 ## Aspects
-- UI with high-level interactivity and density of information
+- explorable UI with high-level interactivity and density of information
     - given a keyword, interactively presenting connectivity of components which declaration contains the keyword
     - interactively presenting code blocks of the component
     - interactively presenting developers for the code block
     - interactively presenting PR infos for the code block
     
-- scalable backend associating code structure, history and PR
+- scalable backend associating code structure, history and PR by linking them with a line of code
     - given a set of C/C++ repos, establishing index of these repos according to their component (struct/function/class) declarations
     - associating between a line of code and components (struct/function/class) via code graph
     - associating between a line of code and developers via analyzing commit history

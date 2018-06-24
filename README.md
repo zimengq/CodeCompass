@@ -4,7 +4,7 @@
 - search C/C++ components (class/function) by keywords
 - present structural information, like associations among code blocks   
 - present developer information of lines of code
-- present pr information of lines of code
+- present PR information of lines of code
 
 ## Whole Picture
 - requirement (scenario with natural language)

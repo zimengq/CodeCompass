@@ -1,8 +1,7 @@
 # Code Compass
 
-a knowledge-based explorable search engine providing all-round information for software developement, combining code section, code structure, code history and PR.
+a knowledge-based explorable search engine providing all-round informations for software developement, combining code section, code structure, code history and PR.
 
-## Aims
 - build connetions among domain-specific informations, like code structure, history and PR
 - provide services for explorations during software development
 

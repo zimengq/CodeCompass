@@ -78,28 +78,28 @@ A knowledge-based explorable search engine providing all-round information for s
 
 * generate tmp files into the folder
 
-AST.json, uAST.json and file_path.json
+** AST.json, uAST.json and file_path.json
 
         $ cd Code-Compass/compass/hook
         $ python main.py --tojson testDataForCompass True
 
-line_dict_new.json
+** line_dict_new.json
     
         $ cd Code-Compass/compass/hook
         $ python line_info.py
     
-nodes.json and edges.json
+** nodes.json and edges.json
 
         $ cd Code-Compass/compass
         modify "/home/user0" in createSemanticGraph.py according to home path 
         $ python createSemanticGraph.py
 
-pull_request.json
+** pull_request.json
     
         $ cd Code-Compass/compass/git_tool/pull_request
         $ python get_pull_request.py
 
-code2pr.json
+** code2pr.json
 
         $ cd Code-Compass/compass/git_tool/pull_request
         $ python get_pr_code.py

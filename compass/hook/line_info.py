@@ -44,3 +44,4 @@ if __name__ == '__main__':
 	with open(file_path, 'w+') as f1:
 		json.dump(out_dict, f1, ensure_ascii=False, indent=4)
 	f1.close()
+	os.system("cp ~/Code-Compass/compass/hook/*.json ~/testDataForCompass")

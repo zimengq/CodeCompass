@@ -14,13 +14,18 @@ if __name__ == '__main__':
     if not os.path.exists(home_path):
         try:
             os.mkdir(home_path)
-        except:
-            print ("Exist")
-    os.chdir("../compass/hook")
+        except OSError as exception:
+            raise SystemExit("Error: could not create home path directory.")
+    # os.chdir(home_path)
+    # os.system("git clone https://github.com/openvswitch/ovs.git")
+    # os.system("git clone https://github.com/ceph/ceph.git")
+    # os.system("git clone https://github.com/google/protobuf.git")
+    os.chdir("../hook")
     os.system("python main.py --tojson " + home_path + " True")
     os.system("python line_info.py")
-    os.chdir("../compass")
+    os.system("cp ~/Code-Compass/compass/hook/jsons/*.json " + home_path)
+    os.chdir("..")
     os.system("python create_semantic_graph.py")
-    os.chdir("../compass/git_tool/pull_request")
+    os.chdir("git_tool/pull_request")
     os.system("python get_pull_request.py")
     os.system("python get_pr_code.py")

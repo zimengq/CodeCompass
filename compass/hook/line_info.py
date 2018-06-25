@@ -44,9 +44,3 @@ if __name__ == '__main__':
 	with open(file_path, 'w+') as f1:
 		json.dump(out_dict, f1, ensure_ascii=False, indent=4)
 	f1.close()
-        if not os.path.exists("~/testDataForCompass"):
-	    try:
-		os.path.mkdir("~/testDataForCompass")
-	    except:
-		print("OK")
-	os.system("cp ~/Code-Compass/compass/hook/jsons/*.json ~/testDataForCompass")

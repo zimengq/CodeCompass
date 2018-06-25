@@ -80,39 +80,29 @@ A knowledge-based explorable search engine providing all-round information for s
 
 ** AST.json, uAST.json and file_path.json
 
-    ```
     $ cd Code-Compass/compass/hook
     $ python main.py --tojson testDataForCompass True
-    ```
 
 ** line_dict_new.json
     
-    ```
     $ cd Code-Compass/compass/hook
     $ python line_info.py
-    ```
 
 ** nodes.json and edges.json
 
-    ```
     $ cd Code-Compass/compass
     modify "/home/user0" in createSemanticGraph.py according to home path 
     $ python createSemanticGraph.py
-    ```
 
 ** pull_request.json
     
-    ```
     $ cd Code-Compass/compass/git_tool/pull_request
     $ python get_pull_request.py
-    ```
 
 ** code2pr.json
 
-    ```
     $ cd Code-Compass/compass/git_tool/pull_request
     $ python get_pr_code.py
-    ```
 
 * modify the path in the source code
 

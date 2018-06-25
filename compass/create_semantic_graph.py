@@ -1,11 +1,8 @@
 from semantic import semantic_analysis as sa
 from git_tool.pull_request import get_pull_request as gpr
 from git_tool.pull_request import get_pr_code as gpc
-
-repo_dict = [
-    {"owner": "openvswitch", "repo": "ovs"},
-    {"owner": "ceph", "repo": "ceph"}
-]
+from setup.setup import repo_dict
+from setup.datapath import home_path
 
 
 def create_sentiment_graph(target_dir):
@@ -25,3 +22,8 @@ def fetch_pr(repo_dict, target_dir):
     diff, code = gpc.load_pr_info(target_dir + "pull_request.json")
     gpc.save_json(diff, target_dir + "pr_code.json")
     gpc.save_json(code, target_dir + "code2pr.json")
+
+
+if __name__ == '__main__':
+    create_sentiment_graph(home_path)
+    fetch_pr(repo_dict, home_path)

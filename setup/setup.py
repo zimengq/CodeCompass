@@ -5,8 +5,10 @@ import commands
 import re
 from datapath import home_path
 
-path1 = os.path.dirname(os.path.realpath(__file__))
-path2 = os.path.expandvars('$HOME')
+repo_dict = [
+    {"owner": "openvswitch", "repo": "ovs"},
+    {"owner": "ceph", "repo": "ceph"}
+]
 
 if __name__ == '__main__':
     if not os.path.exists(home_path):

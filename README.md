@@ -94,6 +94,8 @@ A knowledge-based explorable search engine providing all-round information for s
     modify "/home/user0" in createSemanticGraph.py according to home path 
     $ python createSemanticGraph.py
 
+（Move Code-Compass/compass/hook/jsons/*.json to ~/testDataForCompass)
+
 ** pull_request.json
     
     $ cd Code-Compass/compass/git_tool/pull_request

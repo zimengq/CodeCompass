@@ -88,8 +88,6 @@ A knowledge-based explorable search engine providing all-round information for s
     $ cd Code-Compass/compass/hook
     $ python line_info.py
     
-（Move Code-Compass/compass/hook/jsons/*.json to ~/testDataForCompass)
-
 ** nodes.json and edges.json
 
     $ cd Code-Compass/compass

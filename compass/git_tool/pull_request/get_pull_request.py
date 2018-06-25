@@ -81,13 +81,13 @@ def insert_to_db(data):
             connection.close()
 
 
-def insert_to_json(data):
-        if not os.path.exists(JSON_DIR):
+def insert_to_json(data, json_dir, json_file):
+        if not os.path.exists(json_dir):
             try:
-                os.makedirs(JSON_DIR)
+                os.makedirs(json_dir)
             except OSError as exception:
                 raise SystemExit("Error: {}".format(exception))
-        with open(JSON_DIR + JSON_FILE, 'w') as f:
+        with open(json_dir + json_file, 'w') as f:
             json.dump(data, f, indent=4)
 
 
@@ -97,4 +97,4 @@ For debugging
 if __name__ == '__main__':
     # pull_request = iter_over_pages('ceph', 'ceph', pages=100)
     pull_request = get_pull_request('ceph', 'ceph', page=1)
-    insert_to_json(pull_request)
+    insert_to_json(pull_request, JSON_DIR, JSON_FILE)

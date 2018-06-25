@@ -13,7 +13,7 @@ import json
 import logging
 from semantic.utilities import *
 
-JSON_DIR = '/home/kakaiu/testDataForCompass/'
+JSON_DIR = '~/testDataForCompass/'
 JSON_FILE = 'issues_api.json'
 USER_FILE = 'issues_by_user.json'
 logging.basicConfig(level=logging.INFO,

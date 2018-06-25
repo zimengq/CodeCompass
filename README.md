@@ -5,13 +5,13 @@ A knowledge-based explorable search engine providing all-round information for s
 - build connetions among domain-specific information, like code structure, history and PR
 - provide services for explorations during software development
 
-## Functions
+## Features
 - search C/C++ components (struct/function/class) by keywords
 - present structural information, like associations among code blocks   
 - present developer information of lines of code
 - present PR information of lines of code
 
-## Aspects
+## Design
 - explorable UI with high-level interactivity and density of information
     - given a keyword, interactively presenting connectivity of components which declaration contains the keyword
     - interactively presenting code blocks of the component

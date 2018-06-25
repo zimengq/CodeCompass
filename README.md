@@ -3,7 +3,7 @@
 A knowledge-based explorable search engine providing all-round information for software developement.
 
 - build connetions among domain-specific information, like code structure, history and PR
-- provide services for explorations during software development
+- provide explorable UI for searching information during software development
 
 ## Features
 - search C/C++ components (struct/function/class) by keywords

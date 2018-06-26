@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 import os
+import datetime
 from datapath import home_path
 
 setup_path = os.path.dirname(os.path.realpath(__file__))
@@ -11,6 +12,7 @@ repo_dict = [
 ]
 
 if __name__ == '__main__':
+    starttime = datetime.datetime.now()
     if not os.path.exists(home_path):
         try:
             os.mkdir(home_path)
@@ -30,3 +32,8 @@ if __name__ == '__main__':
     os.chdir("git_tool/pull_request")
     os.system("python get_pull_request.py")
     os.system("python get_pr_code.py")
+    endtime = datetime.datetime.now()
+    seconds = (endtime - starttime).seconds
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    print ('程序执行时间 =', '%02d:%02d:%02d' % (h, m, s))

@@ -20,7 +20,6 @@ def time_calcu(start, end):
 if __name__ == '__main__':
     starttime = datetime.datetime.now()
 
-    print('starttime=',starttime)
     if not os.path.exists(home_path):
         try:
             os.mkdir(home_path)
@@ -57,6 +56,7 @@ if __name__ == '__main__':
     ed3 = datetime.datetime.now()
     
     endtime = datetime.datetime.now()
+    print('starttime=',starttime)
     print('endtime=',endtime)
 
     h1, m1, s1 = time_calcu(st1, ed1)

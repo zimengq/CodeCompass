@@ -26,7 +26,7 @@ if __name__ == '__main__':
         except OSError as exception:
             raise SystemExit("Error: could not create home path directory.")
 
-    os.system("cp ~/Code-Compass/compass/setup/datapath.py ~/Code-Compass/compass/webApp/")
+    os.system("cp ~/CodeCompass/compass/setup/datapath.py ~/CodeCompass/compass/webApp/")
 
     os.chdir(home_path)
     os.system("git clone https://github.com/openvswitch/ovs.git")
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     os.system("python line_info.py")
     ed1 = datetime.datetime.now()
 
-    os.system("cp ~/Code-Compass/compass/hook/jsons/*.json " + home_path)
+    os.system("cp ~/CodeCompass/compass/hook/jsons/*.json " + home_path)
     os.chdir("..")
 
     st2 = datetime.datetime.now()

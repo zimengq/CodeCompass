@@ -36,6 +36,9 @@ A knowledge-based explorable search engine providing all-round information for s
 * Install Packages
    
     ```
+    $ sudo apt install git
+    $ cd ~
+    $ git clone https://github.com/ch-chiu/Code-Compass.git
     $ cd ~/Code-Compass/compass/setup
     $ python install.py
     ```

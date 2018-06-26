@@ -1,1 +1,1 @@
-home_path = "/home/user0/testDataForCompass/"
+home_path = "/Users/ChrisQiu/testDataForCompass/"

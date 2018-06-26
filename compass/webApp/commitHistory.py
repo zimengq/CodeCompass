@@ -31,7 +31,7 @@ def get_author(input_file, input_line, databasePath, filePathDictPath):
 	return [author_name, other_list]
 
 def get_gitlog(code_path):
-	print code_path
+	print(code_path)
 	if os.path.exists(code_path):
 		path_name, file_name = os.path.split(code_path)
 		os.chdir(path_name)

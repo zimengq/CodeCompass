@@ -16,8 +16,8 @@ def find_code(keyword, lineDictPath, fileDictPath, codeBasePath):
 		file_num = int(line_info[j][0:8])
 		begin_line = int(line_info[j][8:16])
 		end_line = int(line_info[j][16:24])
-		print file_path[file_num]
-		print codeBasePath
+		print(file_path[file_num])
+		print(codeBasePath)
 		file_name = file_path[file_num].replace("/home/user0", codeBasePath)
 		with open(file_name) as file_content:
 			check_point = 0

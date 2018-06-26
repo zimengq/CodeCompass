@@ -38,12 +38,12 @@ A knowledge-based explorable search engine providing all-round information for s
     ```
     $ sudo apt install git
     $ cd ~
-    $ git clone https://github.com/ch-chiu/Code-Compass.git
-    $ cd ~/Code-Compass/compass/setup
+    $ git clone https://github.com/ch-chiu/CodeCompass.git
+    $ cd ~/CodeCompass/compass/setup
     $ python install.py
     ```
 ### 2. Generate Tmp Files
-* change the path in ~/Code-Compass/compass/setup/datapath.py
+* change the home path for data in ~/CodeCompass/compass/setup/datapath.py
 
 (You can only replace user0 with your own username or replace the whole path with the path you want to store the files.
 
@@ -52,7 +52,7 @@ You only need to change the path at this place.)
 * setup compass3.0
     
     ```
-    $ cd ~/Code-Compass/compass/setup
+    $ cd ~/CodeCompass/compass/setup
     $ python setup.py
     ```
 
@@ -60,7 +60,7 @@ You only need to change the path at this place.)
 * run flask app
 
     ```
-    $ cd Code-Compass/compass/webApp
+    $ cd CodeCompass/compass/webApp
     $ sudo python app.py
     ```
 

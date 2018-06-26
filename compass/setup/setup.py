@@ -3,6 +3,8 @@
 import os
 from datapath import home_path
 
+setup_path = os.path.dirname(os.path.realpath(__file__))
+
 repo_dict = [
     {"owner": "openvswitch", "repo": "ovs"},
     {"owner": "ceph", "repo": "ceph"}
@@ -18,6 +20,7 @@ if __name__ == '__main__':
     os.system("git clone https://github.com/openvswitch/ovs.git")
     os.system("git clone https://github.com/ceph/ceph.git")
     os.system("git clone https://github.com/google/protobuf.git")
+    os.chdir(setup_path)
     os.chdir("../hook")
     os.system("python main.py --tojson " + home_path + " True")
     os.system("python line_info.py")

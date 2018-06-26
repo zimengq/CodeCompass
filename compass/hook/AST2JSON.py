@@ -125,8 +125,8 @@ def to_json(node_list, json_name1, Tri=False):
         for i in range(len(node_list_new)):
             name = node_list_new[i][0]
             del node_list_new[i][0]
-            AST_dict = to_dict(node_list_new[i], i)
             logger.info("Processing c/c++ file #%i:%s" % (i, name))
+            AST_dict = to_dict(node_list_new[i], i)
             new_dict = dict()
             new_dict['__filename'] = name
             new_dict['__content'] = AST_dict[0]

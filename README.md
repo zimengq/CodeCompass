@@ -43,7 +43,7 @@ A knowledge-based explorable search engine providing all-round information for s
     $ python install.py
     ```
 ### 2. Generate Tmp Files
-* change the home path for data in ~/CodeCompass/compass/setup/datapath.py
+* change the home path for data in ~/CodeCompass/compass/setup/data_path.py
 
 (You can only replace user0 with your own username or replace the whole path with the path you want to store the files.
 

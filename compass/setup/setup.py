@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import os
 import datetime
-from datapath import home_path
+from data_path import home_path
 
 setup_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
         except OSError as exception:
             raise SystemExit("Error: could not create home path directory.")
 
-    os.system("cp ~/CodeCompass/compass/setup/datapath.py ~/CodeCompass/compass/webApp/")
+    os.system("cp ~/CodeCompass/compass/setup/data_path.py ~/CodeCompass/compass/webApp/")
 
     os.chdir(home_path)
     os.system("git clone https://github.com/openvswitch/ovs.git")

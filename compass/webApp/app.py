@@ -1,6 +1,6 @@
 #!flask/bin/python
 from flask import Flask, render_template, jsonify, request
-from datapath import home_path
+from data_path import home_path
 import json
 import os
 import semanticGraph, codeSection, commitHistory, prInfo

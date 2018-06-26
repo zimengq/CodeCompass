@@ -54,7 +54,6 @@ A knowledge-based explorable search engine providing all-round information for s
 
     ```
     $ cd Code-Compass/compass/webApp
-    modify "/home/user0" in app.py according to home path 
     $ sudo python app.py
     ```
 

@@ -6,6 +6,7 @@ __author__  = 'king-jojo'
 import json
 import re
 import os
+import logging
 from AST_Process import Node_extract
 
 RE_AZ = re.compile(r'-(.*?) ')
@@ -18,6 +19,10 @@ RE_FILE_HPP = re.compile(r'.hpp:(.*?):')
 RE_FILE_CC = re.compile(r'.cc:(.*?):')
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 def to_init_dict(node_list, id):
     """Transform the node list into nested dictionary"""
@@ -46,7 +51,7 @@ def to_init_dict(node_list, id):
 
 def to_dict(node_list, id):
     """Transform the node list into nested dictionary"""
-    print (id)
+    logger.info("Processing c/c++ file #%i" % id)
     node_list_cp = node_list[:]
     cp_list = []
     # func_num_list = []

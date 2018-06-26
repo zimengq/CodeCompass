@@ -38,9 +38,11 @@ class FindModule:
 	    return output_list
 
 if __name__ == '__main__':
+	print ("Processing Line Information ...")
 	findmod = FindModule()
 	out_dict = findmod.generate_dict()
 	file_path = "./jsons/line_dict_new.json"
 	with open(file_path, 'w+') as f1:
 		json.dump(out_dict, f1, ensure_ascii=False, indent=4)
 	f1.close()
+	print ("Finished")

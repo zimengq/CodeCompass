@@ -18,6 +18,7 @@ if __name__ == '__main__':
             os.mkdir(home_path)
         except OSError as exception:
             raise SystemExit("Error: could not create home path directory.")
+    os.system("cp ~/Code-Compass/compass/setup/datapath.py ~/Code-Compass/compass/webApp/")
     os.chdir(home_path)
     os.system("git clone https://github.com/openvswitch/ovs.git")
     os.system("git clone https://github.com/ceph/ceph.git")

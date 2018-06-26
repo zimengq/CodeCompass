@@ -97,7 +97,7 @@ if __name__ == '__main__':
                         node_list, name_all, node_list1 = Node_extract(code_path, sel)
                         node_list.insert(0, code_path)
                         names.append(name_all)
-                        to_json(node_list, json_file1, json_file2, False)
+                        to_json(node_list, json_file1, False)
                         uAST = to_init_dict(node_list1, 0)[1]
                         print ('The total amount of the nodes is {}'.format(len(node_list1)))
                         with open(json_file3, 'w+') as f:
@@ -134,7 +134,7 @@ if __name__ == '__main__':
                         with open(json_file4, 'w+') as f1:
                             json.dump(AST_patch, f1, ensure_ascii=False, indent=4)
                         f1.close()
-                        to_json(json_list, json_file1, json_file2, True)
+                        to_json(json_list, json_file1, True)
                         print ("The json file path: "+json_files_dir)
                     code_path_file = dir_path + "/jsons/file_path.json"
                     with open(code_path_file, 'w+') as f:

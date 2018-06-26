@@ -51,7 +51,6 @@ def to_init_dict(node_list, id):
 
 def to_dict(node_list, id):
     """Transform the node list into nested dictionary"""
-    logger.info("Processing c/c++ file #%i" % id)
     node_list_cp = node_list[:]
     cp_list = []
     # func_num_list = []
@@ -118,30 +117,23 @@ def to_dict(node_list, id):
                 break
     return [AST_dict, cp_list, node_list_cp, trace_list]
 
-def to_json(node_list, json_name1, json_name2, Tri=False):
+def to_json(node_list, json_name1, Tri=False):
     """Write into json format"""
     if Tri:
         node_list_new = node_list[:]
         final_list1 = []
-        final_list2 = []
         for i in range(len(node_list_new)):
             name = node_list_new[i][0]
             del node_list_new[i][0]
             AST_dict = to_dict(node_list_new[i], i)
+            logger.info("Processing c/c++ file #%i:%s" % (i, name))
             new_dict = dict()
             new_dict['__filename'] = name
             new_dict['__content'] = AST_dict[0]
-            trace_newdict = dict()
-            trace_newdict['__filename'] = name
-            trace_newdict['__content'] = AST_dict[3]
             final_list1.append(new_dict)
-            final_list2.append(trace_newdict)
         with open(json_name1, 'w+') as f1:
             json.dump(final_list1, f1, ensure_ascii=False, indent=4)
         f1.close()
-        with open(json_name2, 'w+') as f2:
-            json.dump(final_list2, f2, ensure_ascii=False, indent=4)
-        f2.close()
     else:
         node_list_new = node_list[:]
         name = node_list_new[0]
@@ -150,15 +142,9 @@ def to_json(node_list, json_name1, json_name2, Tri=False):
         new_dict = dict()
         new_dict['__filename'] = name
         new_dict['__content'] = AST_dict[0]
-        trace_newdict = dict()
-        trace_newdict['__filename'] = name
-        trace_newdict['__content'] = AST_dict[3]
         with open(json_name1, 'w+') as f1:
             json.dump(new_dict, f1, ensure_ascii=False, indent=4)
         f1.close()
-        with open(json_name2, 'w+') as f2:
-            json.dump(trace_newdict, f2, ensure_ascii=False, indent=4)
-        f2.close()
 
 def Sequence_gene(node_list, num_list):
     """From the root to the leaves, we traverse the tree to get all the sequences"""

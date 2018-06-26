@@ -2,7 +2,7 @@ from semantic import semantic_analysis as sa
 from git_tool.pull_request import get_pull_request as gpr
 from git_tool.pull_request import get_pr_code as gpc
 from setup.setup import repo_dict
-from setup.datapath import home_path
+from setup.data_path import home_path
 
 
 def create_sentiment_graph(target_dir):

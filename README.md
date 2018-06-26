@@ -31,7 +31,7 @@ A knowledge-based explorable search engine providing all-round information for s
 
 ## How it works
 ### 1. Prepare Environment
-* Ubuntu 16.04 and Python3 32bit and 8GB RAM
+* **Ubuntu 16.04** and **Python3** **32bit** and **8GB RAM**
 
 * Install Packages
    

@@ -53,6 +53,7 @@ if __name__ == '__main__':
     st3 = datetime.datetime.now()
     os.system("python get_pull_request.py")
     os.system("python get_pr_code.py")
+    os.system("cp ~/CodeCompass/compass/git_tool/pull_request/data/*.json " + home_path)
     ed3 = datetime.datetime.now()
     
     endtime = datetime.datetime.now()

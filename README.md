@@ -45,6 +45,10 @@ A knowledge-based explorable search engine providing all-round information for s
 ### 2. Generate Tmp Files
 * change the path in ~/Code-Compass/compass/setup/datapath.py
 
+(You can only replace user0 with your own username or replace the whole path with the path you want to store the files.
+
+You only need to change the path at this place.)
+
 * setup compass3.0
     
     ```

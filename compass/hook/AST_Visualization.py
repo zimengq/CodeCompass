@@ -12,7 +12,7 @@ RE_AZ = re.compile(r'-(.*?) ')
 RE_C = re.compile(r'/(.*).c')
 
 def node_graph(code_path, preprocess, same_list):
-    """Show the syntax tree and display the same part of tow trees"""
+    """Show the syntax tree and display the same part of two trees"""
     if '.c' not in code_path or '.cpp' not in code_path:
         code_path_list = []
         g = os.walk(code_path)
